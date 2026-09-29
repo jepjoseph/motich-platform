@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
-import phoneImage from "../../assets/hero/phone.png";
-import house1 from "../../assets/hero/house1.png";
-import house2 from "../../assets/hero/house2.png";
-import house3 from "../../assets/hero/house3.png";
-import energyIcon from "../../assets/icons/energy-icon.png";
-import securityIcon from "../../assets/icons/security-icon.png";
-import smartControlIcon from "../../assets/icons/smart-control-icon.png";
-import sustainableIcon from "../../assets/icons/sustainable-icon.png";
+import phoneImage from "../../../../assets/hero/phone.png";
+import house1 from "../../../../assets/hero/house1.png";
+import house2 from "../../../../assets/hero/house2.png";
+import house3 from "../../../../assets/hero/house3.png";
+import energyIcon from "../../../../assets/icons/energy-icon.png";
+import securityIcon from "../../../../assets/icons/security-icon.png";
+import smartControlIcon from "../../../../assets/icons/smart-control-icon.png";
+import sustainableIcon from "../../../../assets/icons/sustainable-icon.png";
 
 import "./Hero.css";
 

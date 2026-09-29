@@ -1,0 +1,124 @@
+.mission-vision {
+  position: relative;
+  padding: 50px 0;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(91, 33, 182, 0.12),
+      transparent 42%
+    ),
+    #06040f;
+}
+
+.mission-vision-container {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.mission-vision-heading {
+  max-width: 720px;
+  margin: 0 auto 56px;
+  text-align: center;
+}
+
+.mission-vision-eyebrow {
+  margin: 0 0 14px;
+  color: #a78bfa;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.mission-vision-title {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+
+.mission-vision-title span {
+  color: #a78bfa;
+}
+
+.mission-vision-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.mission-vision-card {
+  position: relative;
+  min-height: 280px;
+  padding: 42px;
+  overflow: hidden;
+
+  border: 1px solid rgba(167, 139, 250, 0.16);
+  border-radius: 22px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(124, 58, 237, 0.11),
+    rgba(11, 7, 24, 0.78)
+  );
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.mission-vision-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(167, 139, 250, 0.34);
+}
+
+.mission-vision-label {
+  display: inline-block;
+  color: #a78bfa;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.mission-vision-card h3 {
+  margin: 26px 0 16px;
+  color: #fff;
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  line-height: 1.2;
+}
+
+.mission-vision-card p {
+  max-width: 470px;
+  margin: 0;
+  color: rgba(225, 221, 235, 0.7);
+  font-size: 0.96rem;
+  line-height: 1.75;
+}
+
+@media (max-width: 760px) {
+  .mission-vision {
+    padding: 80px 0;
+  }
+
+  .mission-vision-container {
+    width: min(100% - 32px, 1180px);
+  }
+
+  .mission-vision-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-vision-card {
+    min-height: auto;
+    padding: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mission-vision-card {
+    transition: none;
+  }
+}

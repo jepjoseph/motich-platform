@@ -35,6 +35,19 @@
   text-shadow: 0 0 24px rgba(139, 92, 246, 0.25);
 }
 
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Adjusts the spacing between the logo and the text */
+  text-decoration: none;
+}
+
+.brand-logo {
+  height: 50px; /* Set this to match your header size */
+  width: auto; /* Maintains the original aspect ratio of your PNG */
+  object-fit: contain;
+}
+
 .main-navigation {
   display: flex;
   align-items: center;

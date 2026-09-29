@@ -1,45 +1,82 @@
+import { Link, NavLink } from "react-router-dom";
+
+import motichLogo from "../../assets/logo/motich-logo.png";
+
 import "./Header.css";
 
 function Header() {
   return (
     <header className="site-header">
       <div className="header-container">
-        <a className="brand" href="/" aria-label="MoticH home">
+        <Link className="brand" to="/" aria-label="MoticH home">
+          <img src={motichLogo} alt="" className="brand-logo" />
           <span className="brand-name">MoticH</span>
-        </a>
+        </Link>
 
         <nav className="main-navigation" aria-label="Main navigation">
-          <a className="nav-link active" href="/">
+          <NavLink
+            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
+            to="/"
+            end
+          >
             Home
-          </a>
+          </NavLink>
 
-          <a className="nav-link" href="/about">
+          <NavLink
+            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
+            to="/about"
+          >
             About
-          </a>
+          </NavLink>
 
-          <a className="nav-link" href="/solutions">
+          <NavLink
+            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
+            to="/team"
+          >
+            Team
+          </NavLink>
+
+          <NavLink
+            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
+            to="/solutions"
+          >
             Solutions
-          </a>
+          </NavLink>
 
-          <a className="nav-link" href="/products">
+          <NavLink
+            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
+            to="/products"
+          >
             Products
-          </a>
+          </NavLink>
 
-          <a className="nav-link" href="/demo">
+          <NavLink
+            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
+            to="/demo"
+          >
             Demo
-          </a>
+          </NavLink>
 
-          <a className="nav-link" href="/gallery">
+          <NavLink
+            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
+            to="/gallery"
+          >
             Gallery
-          </a>
+          </NavLink>
 
-          <a className="nav-link" href="/blog">
+          <NavLink
+            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
+            to="/blog"
+          >
             Blog
-          </a>
+          </NavLink>
 
-          <a className="nav-link" href="/contact">
+          <NavLink
+            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
+            to="/contact"
+          >
             Contact
-          </a>
+          </NavLink>
         </nav>
 
         <div className="header-actions">
@@ -52,10 +89,10 @@ function Header() {
             <span aria-hidden="true">⌕</span>
           </button>
 
-          <a className="get-started-button" href="/login">
+          <Link className="get-started-button" to="/login">
             Get Started
             <span aria-hidden="true">→</span>
-          </a>
+          </Link>
         </div>
       </div>
     </header>
