@@ -1,0 +1,583 @@
+/* ========================================
+   Hero
+   ======================================== */
+
+.hero-section {
+  position: relative;
+
+  min-height: calc(100vh - 70px);
+
+  overflow: hidden;
+
+  background: var(--color-background);
+}
+
+/* ========================================
+   Background Slideshow
+   ======================================== */
+
+.hero-backgrounds {
+  position: absolute;
+  inset: 0;
+
+  z-index: 0;
+
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  opacity: 0;
+
+  transform: scale(1.03);
+
+  transition:
+    opacity 1.4s ease-in-out,
+    transform 7s ease-out;
+}
+
+.hero-background-active {
+  opacity: 1;
+
+  transform: scale(1);
+}
+
+/*
+   Dark/purple directional overlay.
+
+   Left side is darker because the text is there.
+   Right side is more transparent so the house
+   remains visible behind phone.png.
+*/
+
+.hero-background-overlay {
+  position: absolute;
+  inset: 0;
+
+  z-index: 1;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(6, 3, 15, 0.94) 0%,
+      rgba(18, 5, 31, 0.86) 25%,
+      rgba(27, 11, 46, 0.62) 48%,
+      rgba(10, 8, 28, 0.28) 70%,
+      rgba(5, 7, 18, 0.18) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(5, 5, 15, 0.18) 0%,
+      rgba(5, 5, 15, 0.08) 55%,
+      rgba(5, 5, 15, 0.48) 100%
+    );
+
+  pointer-events: none;
+}
+
+/* ========================================
+   Container
+   ======================================== */
+
+.hero-container {
+  position: relative;
+  z-index: 2;
+
+  width: min(100% - 48px, 1440px);
+  min-height: calc(100vh - 70px);
+
+  margin: 0 auto;
+  padding: 48px 0;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.8fr)
+    minmax(350px, 0.7fr);
+
+  align-items: center;
+
+  gap: 60px;
+}
+
+/* ========================================
+   Content
+   ======================================== */
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+
+  width: 100%;
+  max-width: 500px;
+}
+
+.hero-eyebrow {
+  margin: 0 0 10px;
+
+  color: var(--color-accent);
+
+  font-size: 0.64rem;
+  font-weight: 700;
+
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+
+  text-shadow: 0 0 12px rgba(124, 58, 237, 0.5);
+}
+
+/* ========================================
+   Title
+   ======================================== */
+
+.hero-title {
+  margin: 0;
+
+  max-width: 400px;
+
+  color: var(--color-text-primary);
+
+  font-size: clamp(2.1rem, 1.5vw, 3.8rem);
+  font-weight: 700;
+
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.65);
+}
+
+.hero-title-accent {
+  background: var(--gradient-glow);
+
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  color: transparent;
+
+  filter: drop-shadow(0 0 12px rgba(124, 58, 237, 0.28));
+}
+
+/* ========================================
+   Description
+   ======================================== */
+
+.hero-description {
+  max-width: 400px;
+
+  margin: 16px 0 0;
+
+  color: var(--color-text-secondary);
+
+  font-size: 0.78rem;
+
+  line-height: 1.5;
+
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* ========================================
+   Features
+   ======================================== */
+
+.hero-features {
+  width: 68%;
+
+  margin-top: 24px;
+
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 16px;
+}
+
+.hero-feature {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 7px;
+}
+
+/*
+   These are now real PNG icons.
+
+   No box is added by CSS.
+   If your PNG files have transparent backgrounds,
+   they will appear naturally over the Hero.
+*/
+
+.feature-icon {
+  display: block;
+
+  width: 30px;
+  height: 30px;
+
+  object-fit: contain;
+
+  filter: drop-shadow(0 0 7px rgba(124, 58, 237, 0.6));
+}
+
+.hero-feature h2 {
+  margin: 0;
+
+  color: var(--color-text-primary);
+
+  font-size: 0.68rem;
+  font-weight: 500;
+
+  line-height: 1.25;
+
+  text-shadow: 0 2px 7px rgba(0, 0, 0, 0.85);
+}
+
+/* ========================================
+   Actions
+   ======================================== */
+
+.hero-actions {
+  margin-top: 25px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 20px;
+}
+
+.hero-primary-button {
+  min-height: 40px;
+
+  padding: 0 1.15rem;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.65rem;
+
+  color: var(--color-on-primary);
+
+  background: var(--gradient-primary);
+
+  border: 1px solid var(--color-border-bright);
+
+  border-radius: 20px;
+
+  box-shadow: var(--glow-primary);
+
+  font-size: 0.72rem;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.hero-primary-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow: var(--glow-strong);
+}
+
+/* ========================================
+   Video Button
+   ======================================== */
+
+.hero-video-button {
+  padding: 0;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  color: var(--color-text-primary);
+
+  background: transparent;
+
+  border: 0;
+
+  font-size: 0.72rem;
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.play-icon {
+  width: 34px;
+  height: 34px;
+
+  display: grid;
+
+  place-items: center;
+
+  color: var(--color-accent);
+
+  background: rgba(18, 5, 31, 0.5);
+
+  border: 1px solid var(--color-border-bright);
+
+  border-radius: 50%;
+
+  box-shadow: 0 0 12px rgba(124, 58, 237, 0.18);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  font-size: 0.58rem;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.hero-video-button:hover .play-icon {
+  transform: scale(1.05);
+
+  box-shadow: var(--glow-primary);
+}
+
+/* ========================================
+   Phone Visual
+   ======================================== */
+
+.hero-visual {
+  position: relative;
+
+  z-index: 3;
+
+  min-height: 470px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+   Purple glow behind the transparent PNG.
+   It does not hide the background house.
+*/
+
+.visual-glow {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 380px;
+  height: 380px;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(124, 58, 237, 0.28) 0%,
+    rgba(76, 29, 149, 0.18) 40%,
+    transparent 72%
+  );
+
+  filter: blur(35px);
+
+  pointer-events: none;
+}
+
+/*
+   phone.png itself.
+
+   No background.
+   No card.
+   No border.
+
+   The transparent parts of phone.png allow
+   house1.png / house2.png to remain visible.
+*/
+
+.hero-phone-image {
+  position: relative;
+
+  z-index: 2;
+
+  display: block;
+
+  width: min(100%, 520px);
+  max-height: 600px;
+
+  object-fit: contain;
+
+  filter: drop-shadow(0 25px 40px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 0 22px rgba(124, 58, 237, 0.3));
+
+  animation: phone-float 5s ease-in-out infinite;
+
+  user-select: none;
+
+  pointer-events: none;
+}
+
+/* ========================================
+   Phone Animation
+   ======================================== */
+
+@keyframes phone-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ========================================
+   Responsive - Tablet
+   ======================================== */
+
+@media (max-width: 1100px) {
+  .hero-container {
+    grid-template-columns:
+      minmax(0, 1fr)
+      340px;
+
+    gap: 35px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.4rem, 4.5vw, 3.5rem);
+  }
+
+  .hero-phone-image {
+    width: min(100%, 420px);
+  }
+
+  .hero-visual {
+    min-height: 420px;
+  }
+}
+
+/* ========================================
+   Responsive - Small Tablet
+   ======================================== */
+
+@media (max-width: 850px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+
+    gap: 25px;
+
+    padding: 50px 0;
+  }
+
+  /*
+     On smaller screens the overlay becomes
+     darker over the entire background so
+     readability is preserved.
+  */
+
+  .hero-background-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(6, 3, 15, 0.9) 0%,
+      rgba(18, 5, 31, 0.76) 50%,
+      rgba(6, 3, 15, 0.82) 100%
+    );
+  }
+
+  .hero-content {
+    max-width: 620px;
+  }
+
+  .hero-visual {
+    min-height: 390px;
+  }
+
+  .hero-phone-image {
+    width: min(90%, 500px);
+    max-height: 500px;
+  }
+}
+
+/* ========================================
+   Responsive - Mobile
+   ======================================== */
+
+@media (max-width: 600px) {
+  .hero-container {
+    width: min(100% - 32px, 1440px);
+
+    padding: 40px 0;
+  }
+
+  .hero-background {
+    background-position: center;
+  }
+
+  .hero-title {
+    font-size: clamp(2.2rem, 11vw, 3rem);
+  }
+
+  .hero-description {
+    font-size: 0.85rem;
+  }
+
+  .hero-features {
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+  }
+
+  .hero-actions {
+    flex-wrap: wrap;
+  }
+
+  .hero-visual {
+    min-height: 320px;
+  }
+
+  .hero-phone-image {
+    width: min(100%, 400px);
+    max-height: 400px;
+  }
+
+  .visual-glow {
+    width: 280px;
+    height: 280px;
+  }
+}
+
+/* ========================================
+   Reduced Motion
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-background {
+    transition: none;
+
+    transform: none;
+  }
+
+  .hero-phone-image {
+    animation: none;
+  }
+}

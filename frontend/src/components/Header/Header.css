@@ -1,0 +1,127 @@
+.site-header {
+  width: 100%;
+
+  background: rgba(7, 11, 23, 0.82);
+  border-bottom: 1px solid var(--color-border);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.header-container {
+  width: min(100% - 48px, 1440px);
+  height: 60px;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.brand {
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+
+  background: var(--gradient-glow);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+
+  text-shadow: 0 0 24px rgba(139, 92, 246, 0.25);
+}
+
+.main-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.65rem;
+
+  margin-left: auto;
+}
+
+.nav-link {
+  position: relative;
+  padding: 2rem 0;
+
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--color-primary);
+}
+
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1.4rem;
+
+  height: 2px;
+  background: var(--gradient-glow);
+  box-shadow: var(--glow-primary);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  margin-left: 1rem;
+}
+
+.search-button {
+  display: grid;
+  place-items: center;
+
+  width: 42px;
+  height: 42px;
+  padding: 0;
+
+  border: 0;
+  background: transparent;
+  color: var(--color-text-primary);
+
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.get-started-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+
+  height: 36px;
+  padding: 0.75rem 1.25rem;
+
+  background: var(--gradient-primary);
+  color: var(--color-on-primary);
+
+  border: 1px solid var(--color-border-bright);
+  border-radius: 8px;
+  box-shadow: var(--glow-primary);
+
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.get-started-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glow-strong);
+}

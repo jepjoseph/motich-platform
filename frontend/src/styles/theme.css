@@ -1,0 +1,79 @@
+:root {
+  /* ========================================
+     MoticH Brand Palette
+     ======================================== */
+
+  --color-purple-deep: #12051f;
+  --color-purple-dark: #1b0b2e;
+  --color-purple: #4c1d95;
+  --color-violet: #7c3aed;
+
+  --color-navy: #060912;
+  --color-blue-dark: #0b1739;
+  --color-blue: #1e3a8a;
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* ========================================
+     Default MoticH Theme
+     ======================================== */
+
+  --color-background: var(--color-navy);
+  --color-background-secondary: var(--color-purple-deep);
+
+  --color-surface: var(--color-purple-dark);
+  --color-surface-elevated: #25103d;
+
+  --color-text-primary: #f8f7fc;
+  --color-text-secondary: #b8afc9;
+  --color-text-muted: #7f758f;
+
+  --color-primary: var(--color-purple);
+  --color-secondary: var(--color-blue-dark);
+  --color-accent: var(--color-violet);
+
+  --color-on-primary: var(--color-white);
+
+  --color-border: rgba(124, 58, 237, 0.24);
+  --color-border-bright: rgba(124, 58, 237, 0.5);
+
+  /* ========================================
+     Glow Effects
+     ======================================== */
+
+  --glow-primary:
+    0 0 12px rgba(124, 58, 237, 0.42), 0 0 30px rgba(76, 29, 149, 0.32);
+
+  --glow-secondary:
+    0 0 12px rgba(30, 58, 138, 0.35), 0 0 30px rgba(30, 58, 138, 0.18);
+
+  --glow-strong:
+    0 0 18px rgba(124, 58, 237, 0.55), 0 0 42px rgba(76, 29, 149, 0.4),
+    0 0 60px rgba(30, 58, 138, 0.15);
+
+  /* ========================================
+     Shadows
+     ======================================== */
+
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+  --shadow-card: 0 18px 50px rgba(0, 0, 0, 0.4);
+
+  /* ========================================
+     Gradients
+     ======================================== */
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-purple),
+    var(--color-violet)
+  );
+
+  --gradient-glow: linear-gradient(
+    135deg,
+    var(--color-violet),
+    var(--color-purple),
+    var(--color-blue)
+  );
+}
