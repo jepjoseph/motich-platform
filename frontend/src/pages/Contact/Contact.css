@@ -1,3 +1,7 @@
+/* =========================================================
+   Contact Placeholder Page
+   ========================================================= */
+
 .placeholder-page {
   min-height: 70vh;
   padding: 150px 24px 100px;
@@ -7,6 +11,8 @@
   justify-content: center;
 
   text-align: center;
+
+  overflow: hidden;
 
   background:
     radial-gradient(
@@ -18,6 +24,7 @@
 }
 
 .placeholder-page-content {
+  width: 100%;
   max-width: 650px;
 }
 
@@ -35,7 +42,7 @@
 .placeholder-page h1 {
   margin: 0;
 
-  color: #fff;
+  color: #ffffff;
 
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   line-height: 1.05;
@@ -48,4 +55,363 @@
 
   font-size: 1rem;
   line-height: 1.7;
+}
+
+/* =========================================================
+   3D Scene
+   ========================================================= */
+
+.contact-logo-scene {
+  position: relative;
+
+  width: 100%;
+  height: 340px;
+
+  margin: 25px auto 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /*
+   * This gives the child elements actual visual perspective.
+   */
+  perspective: 750px;
+  perspective-origin: 50% 50%;
+
+  overflow: visible;
+}
+
+/* =========================================================
+   Front / Back Distance
+
+   This element makes the entire logo move toward and away
+   from the viewer.
+
+   It is intentionally separate from the Y rotation.
+   ========================================================= */
+
+.contact-logo-distance {
+  position: relative;
+
+  width: 250px;
+  height: 250px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform-style: preserve-3d;
+
+  animation: motich-logo-distance 8s ease-in-out infinite;
+
+  will-change: transform;
+}
+
+/* =========================================================
+   Rotation
+
+   This element ONLY controls the rotation.
+   ========================================================= */
+
+.contact-logo-spinner {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  transform-style: preserve-3d;
+
+  animation: motich-logo-rotation 8s linear infinite;
+
+  will-change: transform;
+}
+
+/* =========================================================
+   3D Logo Object
+   ========================================================= */
+
+.contact-logo-3d {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  transform-style: preserve-3d;
+}
+
+/* =========================================================
+   Shared Logo Layers
+   ========================================================= */
+
+.contact-logo-front,
+.contact-logo-back,
+.contact-logo-depth {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+
+  user-select: none;
+  pointer-events: none;
+}
+
+/* =========================================================
+   Front Face
+   ========================================================= */
+
+.contact-logo-front {
+  z-index: 100;
+
+  transform: translateZ(4px);
+
+  backface-visibility: hidden;
+
+  filter: drop-shadow(0 0 8px rgba(217, 70, 239, 0.6))
+    drop-shadow(0 0 18px rgba(168, 85, 247, 0.45))
+    drop-shadow(0 0 35px rgba(124, 58, 237, 0.3));
+}
+
+/* =========================================================
+   Back Face
+
+   The image is flipped so the logo does not appear
+   mirrored when viewed from behind.
+   ========================================================= */
+
+.contact-logo-back {
+  z-index: 0;
+
+  transform: translateZ(-36px) rotateY(180deg);
+
+  backface-visibility: hidden;
+
+  filter: brightness(0.62) saturate(1.25) contrast(1.1)
+    drop-shadow(0 0 10px rgba(168, 85, 247, 0.35));
+}
+
+/* =========================================================
+   Depth Layers
+
+   These copies create the fake physical thickness.
+   ========================================================= */
+
+.contact-logo-depth {
+  z-index: 10;
+
+  transform: translateZ(var(--depth));
+
+  opacity: 0.96;
+
+  filter: brightness(0.42) saturate(1.5) contrast(1.2);
+
+  backface-visibility: visible;
+}
+
+/* =========================================================
+   Purple Ambient Glow
+   ========================================================= */
+
+.contact-logo-scene::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 300px;
+  height: 300px;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(168, 85, 247, 0.2) 0%,
+    rgba(124, 58, 237, 0.1) 35%,
+    rgba(76, 29, 149, 0.04) 55%,
+    transparent 72%
+  );
+
+  filter: blur(26px);
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   Ground Shadow
+   ========================================================= */
+
+.contact-logo-shadow {
+  position: absolute;
+
+  left: 50%;
+  bottom: 12px;
+
+  width: 200px;
+  height: 30px;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    ellipse,
+    rgba(168, 85, 247, 0.38) 0%,
+    rgba(124, 58, 237, 0.18) 40%,
+    transparent 72%
+  );
+
+  filter: blur(10px);
+
+  pointer-events: none;
+
+  animation: motich-logo-shadow 8s ease-in-out infinite;
+}
+
+/* =========================================================
+   Rotation Animation
+
+   One complete revolution.
+   ========================================================= */
+
+@keyframes motich-logo-rotation {
+  0% {
+    transform: rotateX(-4deg) rotateY(0deg);
+  }
+
+  12.5% {
+    transform: rotateX(-3deg) rotateY(45deg);
+  }
+
+  25% {
+    transform: rotateX(0deg) rotateY(90deg);
+  }
+
+  37.5% {
+    transform: rotateX(3deg) rotateY(135deg);
+  }
+
+  50% {
+    transform: rotateX(4deg) rotateY(180deg);
+  }
+
+  62.5% {
+    transform: rotateX(3deg) rotateY(225deg);
+  }
+
+  75% {
+    transform: rotateX(0deg) rotateY(270deg);
+  }
+
+  87.5% {
+    transform: rotateX(-3deg) rotateY(315deg);
+  }
+
+  100% {
+    transform: rotateX(-4deg) rotateY(360deg);
+  }
+}
+
+/* =========================================================
+   Distance Animation
+
+   Front = closest and largest
+   Back  = farther and smaller
+
+   This is what creates the orbit-like depth effect.
+   ========================================================= */
+
+@keyframes motich-logo-distance {
+  0%,
+  100% {
+    transform: translateZ(90px) scale(1.08);
+  }
+
+  12.5%,
+  87.5% {
+    transform: translateZ(55px) scale(1);
+  }
+
+  25%,
+  75% {
+    transform: translateZ(0) scale(0.9);
+  }
+
+  37.5%,
+  62.5% {
+    transform: translateZ(-65px) scale(0.8);
+  }
+
+  50% {
+    transform: translateZ(-120px) scale(0.7);
+  }
+}
+
+/* =========================================================
+   Shadow Animation
+
+   Shadow becomes smaller/fainter when the logo moves back.
+   ========================================================= */
+
+@keyframes motich-logo-shadow {
+  0%,
+  100% {
+    width: 210px;
+
+    opacity: 0.75;
+
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  25%,
+  75% {
+    width: 165px;
+
+    opacity: 0.5;
+
+    transform: translateX(-50%) scaleX(0.82);
+  }
+
+  50% {
+    width: 120px;
+
+    opacity: 0.28;
+
+    transform: translateX(-50%) scaleX(0.65);
+  }
+}
+
+/* =========================================================
+   Mobile
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .placeholder-page {
+    padding: 120px 20px 80px;
+  }
+
+  .contact-logo-scene {
+    height: 280px;
+
+    perspective: 700px;
+  }
+
+  .contact-logo-distance {
+    width: 200px;
+    height: 200px;
+  }
+
+  .contact-logo-scene::before {
+    width: 240px;
+    height: 240px;
+  }
 }
