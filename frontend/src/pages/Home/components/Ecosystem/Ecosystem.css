@@ -32,7 +32,7 @@
   position: relative;
   z-index: 2;
 
-  width: min(100% - 48px, 1440px);
+  width: min(calc(100% - var(--page-padding)), var(--page-max-width));
 
   margin: 0 auto;
 }
@@ -110,7 +110,7 @@
 
   align-items: center;
 
-  gap: 70px;
+  gap: var(--content-gap);
 }
 
 /* ========================================
@@ -722,10 +722,17 @@
 }
 
 /* ========================================
-   Responsive
+   Tablet
+   <= 1100px
    ======================================== */
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
+  .ecosystem-content {
+    grid-template-columns: 1fr;
+
+    gap: var(--content-gap);
+  }
+
   .ecosystem-systems {
     width: min(100%, 700px);
 
@@ -747,7 +754,16 @@
   }
 }
 
+/* ========================================
+   Mobile
+   <= 600px
+   ======================================== */
+
 @media (max-width: 600px) {
+  .ecosystem-section {
+    padding: 60px 0;
+  }
+
   .ecosystem-systems {
     padding: 16px;
 
@@ -777,70 +793,27 @@
 
   .ecosystem-systems-footer {
     align-items: flex-start;
+
     flex-direction: column;
   }
 }
 
 /* ========================================
-   Reduced Motion
+   Small Tablet
+   <= 850px
    ======================================== */
 
-@media (prefers-reduced-motion: reduce) {
-  .ecosystem-system,
-  .ecosystem-systems-footer a {
-    transition: none;
-  }
-
-  .ecosystem-system:hover {
-    padding-left: 4px;
-    padding-right: 4px;
-  }
-
-  .ecosystem-systems-footer a:hover {
-    transform: none;
-  }
-
-  .ecosystem-slide {
-    transition: none;
-  }
-
-  .ecosystem-slide-arrow,
-  .ecosystem-slide-dot {
-    transition: none;
-  }
-}
-
-/* ========================================
-   Tablet
-   ======================================== */
-
-@media (max-width: 1000px) {
-  .ecosystem-content {
-    grid-template-columns: 1fr;
-
-    gap: 45px;
-  }
-}
-
-/* ========================================
-   Mobile
-   ======================================== */
-
-@media (max-width: 700px) {
+@media (max-width: 850px) {
   .ecosystem-section {
-    padding: 75px 0;
-  }
-
-  .ecosystem-container {
-    width: min(100% - 32px, 1440px);
+    padding: 70px 0;
   }
 
   .ecosystem-heading {
-    margin-bottom: 45px;
+    margin-bottom: 40px;
   }
 
   .ecosystem-title {
-    font-size: clamp(2rem, 10vw, 2.8rem);
+    font-size: clamp(2rem, 7vw, 2.8rem);
   }
 
   .ecosystem-description {
@@ -853,20 +826,20 @@
    ======================================== */
 
 @media (prefers-reduced-motion: reduce) {
-  .ecosystem-system {
+  .ecosystem-system,
+  .ecosystem-systems-footer a,
+  .ecosystem-slide,
+  .ecosystem-slide-arrow,
+  .ecosystem-slide-dot {
     transition: none;
   }
 
   .ecosystem-system:hover {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .ecosystem-systems-footer a:hover {
     transform: none;
-  }
-
-  .ecosystem-slide {
-    transition: none;
-  }
-
-  .ecosystem-slide-arrow,
-  .ecosystem-slide-dot {
-    transition: none;
   }
 }

@@ -12,11 +12,14 @@ import Blog from "./pages/Blog/Blog";
 import Team from "./pages/Team/Team";
 import Contact from "./pages/Contact/Contact";
 
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+
 import "./App.css";
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />

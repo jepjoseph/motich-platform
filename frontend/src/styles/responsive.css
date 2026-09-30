@@ -1,0 +1,181 @@
+/* =========================================================
+   MoticH Global Responsive System
+   =========================================================
+
+   Standard breakpoints used across the website:
+
+   Large Desktop:  > 1440px
+   Desktop:        1101px - 1440px
+   Tablet:         851px - 1100px
+   Small Tablet:   601px - 850px
+   Mobile:         <= 600px
+
+   IMPORTANT:
+   This file contains GLOBAL responsive behavior.
+
+   Component-specific responsive behavior should remain
+   inside that component's CSS file.
+   ========================================================= */
+
+/* =========================================================
+   Global Layout Variables
+   ========================================================= */
+
+:root {
+  /* Maximum content width */
+  --page-max-width: 1440px;
+
+  /* Horizontal page spacing */
+  --page-padding: 48px;
+
+  /* Vertical section spacing */
+  --section-padding: 100px;
+
+  /* Common layout gaps */
+  --content-gap: 60px;
+
+  /* Header height */
+  --header-height: 70px;
+}
+
+/* =========================================================
+   Large Desktop / TV / Ultrawide
+   >= 1800px
+   ========================================================= */
+
+@media (min-width: 1800px) {
+  :root {
+    --page-max-width: 1720px;
+
+    --page-padding: 64px;
+
+    --section-padding: 120px;
+
+    --content-gap: 80px;
+  }
+}
+
+/* =========================================================
+   Very Large / 2K / 4K Displays
+   >= 2400px
+   ========================================================= */
+
+@media (min-width: 2400px) {
+  :root {
+    --page-max-width: 2100px;
+
+    --page-padding: 80px;
+
+    --section-padding: 140px;
+
+    --content-gap: 100px;
+  }
+}
+
+/* =========================================================
+   Standard Page Container
+
+   Usage:
+   <div className="page-container">
+   ========================================================= */
+
+.page-container {
+  width: min(calc(100% - var(--page-padding)), var(--page-max-width));
+
+  margin-inline: auto;
+}
+
+/* =========================================================
+   Standard Section
+
+   Usage:
+   <section className="page-section">
+   ========================================================= */
+
+.page-section {
+  padding-block: var(--section-padding);
+}
+
+/* =========================================================
+   Responsive Image
+
+   Usage:
+   <img className="responsive-image" ... />
+   ========================================================= */
+
+.responsive-image {
+  display: block;
+
+  max-width: 100%;
+  height: auto;
+}
+
+/* =========================================================
+   Standard Two-Column Layout
+
+   Automatically becomes one column on smaller screens.
+
+   Usage:
+   <div className="responsive-two-column">
+   ========================================================= */
+
+.responsive-two-column {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1fr);
+
+  gap: var(--content-gap);
+
+  align-items: center;
+}
+
+/* =========================================================
+   Tablet
+   <= 1100px
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  :root {
+    --page-padding: 32px;
+
+    --section-padding: 80px;
+
+    --content-gap: 35px;
+  }
+}
+
+/* =========================================================
+   Small Tablet
+   <= 850px
+   ========================================================= */
+
+@media (max-width: 850px) {
+  :root {
+    --page-padding: 28px;
+
+    --section-padding: 70px;
+
+    --content-gap: 28px;
+  }
+
+  .responsive-two-column {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   Mobile
+   <= 600px
+   ========================================================= */
+
+@media (max-width: 600px) {
+  :root {
+    --page-padding: 16px;
+
+    --section-padding: 60px;
+
+    --content-gap: 24px;
+  }
+}

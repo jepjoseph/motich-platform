@@ -5,7 +5,7 @@
 .hero-section {
   position: relative;
 
-  min-height: calc(100vh - 70px);
+  min-height: calc(100vh - var(--header-height));
 
   overflow: hidden;
 
@@ -89,8 +89,9 @@
   position: relative;
   z-index: 2;
 
-  width: min(100% - 48px, 1440px);
-  min-height: calc(100vh - 70px);
+  width: min(calc(100% - var(--page-padding)), var(--page-max-width));
+
+  min-height: calc(100vh - var(--header-height));
 
   margin: 0 auto;
   padding: 48px 0;
@@ -103,7 +104,7 @@
 
   align-items: center;
 
-  gap: 60px;
+  gap: var(--content-gap);
 }
 
 /* ========================================
@@ -446,7 +447,7 @@
   }
 
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-18px);
   }
 }
 
@@ -459,8 +460,6 @@
     grid-template-columns:
       minmax(0, 1fr)
       340px;
-
-    gap: 35px;
   }
 
   .hero-title {
@@ -481,40 +480,102 @@
    ======================================== */
 
 @media (max-width: 850px) {
+  /*
+     Keep the original Hero composition:
+     content on the left, phone on the right.
+
+     The columns shrink proportionally instead
+     of stacking vertically.
+  */
+
   .hero-container {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      minmax(0, 1.15fr)
+      minmax(0, 0.85fr);
 
-    gap: 25px;
-
-    padding: 50px 0;
+    padding: 40px 0;
   }
 
   /*
-     On smaller screens the overlay becomes
-     darker over the entire background so
-     readability is preserved.
+     Keep the background centered and visible.
+     "cover" continues to fill the Hero while
+     adapting to the changing screen size.
+  */
+
+  .hero-background {
+    background-position: center center;
+    background-size: cover;
+  }
+
+  /*
+     Preserve the left-to-right overlay because
+     the text remains on the left.
   */
 
   .hero-background-overlay {
-    background: linear-gradient(
-      180deg,
-      rgba(6, 3, 15, 0.9) 0%,
-      rgba(18, 5, 31, 0.76) 50%,
-      rgba(6, 3, 15, 0.82) 100%
-    );
+    background:
+      linear-gradient(
+        90deg,
+        rgba(6, 3, 15, 0.94) 0%,
+        rgba(18, 5, 31, 0.84) 38%,
+        rgba(27, 11, 46, 0.58) 62%,
+        rgba(5, 7, 18, 0.24) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(5, 5, 15, 0.16) 0%,
+        rgba(5, 5, 15, 0.08) 55%,
+        rgba(5, 5, 15, 0.48) 100%
+      );
   }
 
   .hero-content {
-    max-width: 620px;
+    width: 100%;
+    max-width: none;
+  }
+
+  .hero-title {
+    font-size: clamp(1.9rem, 5.5vw, 2.8rem);
+  }
+
+  .hero-description {
+    max-width: 360px;
+
+    font-size: 0.76rem;
+  }
+
+  .hero-features {
+    width: 100%;
+
+    gap: 10px;
+  }
+
+  .feature-icon {
+    width: 27px;
+    height: 27px;
+  }
+
+  .hero-feature h2 {
+    font-size: 0.62rem;
+  }
+
+  .hero-actions {
+    gap: 14px;
   }
 
   .hero-visual {
-    min-height: 390px;
+    min-width: 0;
+    min-height: 360px;
   }
 
   .hero-phone-image {
-    width: min(90%, 500px);
-    max-height: 500px;
+    width: min(100%, 360px);
+    max-height: 430px;
+  }
+
+  .visual-glow {
+    width: 300px;
+    height: 300px;
   }
 }
 
@@ -523,46 +584,150 @@
    ======================================== */
 
 @media (max-width: 600px) {
-  .hero-container {
-    width: min(100% - 32px, 1440px);
+  /*
+     Still preserve:
+     LEFT  = Hero content
+     RIGHT = animated phone
 
-    padding: 40px 0;
+     The content column gets slightly more
+     room because it contains the text.
+  */
+
+  .hero-container {
+    grid-template-columns:
+      minmax(0, 1.2fr)
+      minmax(0, 0.8fr);
+
+    padding: 30px 0;
+
+    gap: 12px;
   }
 
+  /*
+     Keep the house filling the Hero.
+
+     The position can be adjusted later if
+     the important part of house1 is not centered.
+  */
+
   .hero-background {
-    background-position: center;
+    background-position: center center;
+    background-size: cover;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: none;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 7px;
+
+    font-size: 0.52rem;
+    letter-spacing: 0.14em;
   }
 
   .hero-title {
-    font-size: clamp(2.2rem, 11vw, 3rem);
+    max-width: 100%;
+
+    font-size: clamp(1.55rem, 7vw, 2.2rem);
+
+    line-height: 0.98;
   }
 
   .hero-description {
-    font-size: 0.85rem;
+    max-width: 100%;
+
+    margin-top: 12px;
+
+    font-size: 0.68rem;
+
+    line-height: 1.45;
   }
+
+  /*
+     Keep the four features compact.
+
+     2 × 2 works much better here than
+     turning them into four vertical rows.
+  */
 
   .hero-features {
-    grid-template-columns: 1fr;
+    width: 100%;
 
-    gap: 16px;
+    margin-top: 18px;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 12px 8px;
   }
 
+  .hero-feature {
+    gap: 5px;
+  }
+
+  .feature-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .hero-feature h2 {
+    font-size: 0.56rem;
+  }
+
+  /*
+     Buttons remain on the left side but
+     can wrap when necessary.
+  */
+
   .hero-actions {
+    margin-top: 20px;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
     flex-wrap: wrap;
   }
 
+  .hero-primary-button {
+    min-height: 36px;
+
+    padding: 0 0.9rem;
+
+    font-size: 0.62rem;
+  }
+
+  .hero-video-button {
+    font-size: 0.62rem;
+  }
+
+  .play-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  /*
+     Phone remains in the RIGHT column.
+  */
+
   .hero-visual {
-    min-height: 320px;
+    min-width: 0;
+    min-height: 300px;
+
+    justify-content: center;
   }
 
   .hero-phone-image {
-    width: min(100%, 400px);
-    max-height: 400px;
+    width: min(100%, 260px);
+    max-height: 360px;
+
+    object-fit: contain;
   }
 
   .visual-glow {
-    width: 280px;
-    height: 280px;
+    width: 220px;
+    height: 220px;
   }
 }
 
@@ -575,9 +740,5 @@
     transition: none;
 
     transform: none;
-  }
-
-  .hero-phone-image {
-    animation: none;
   }
 }

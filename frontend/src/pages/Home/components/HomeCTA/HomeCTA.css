@@ -19,7 +19,7 @@
 .home-cta-container {
   position: relative;
 
-  width: min(100% - 48px, 1100px);
+  width: min(calc(100% - var(--page-padding)), 1100px);
 
   margin: 0 auto;
 
@@ -213,7 +213,6 @@
   background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 55%, #4f46e5 100%);
 
   border: 1px solid rgba(196, 181, 253, 0.28);
-
   border-radius: 9px;
 
   box-shadow:
@@ -273,16 +272,70 @@
 }
 
 /* ========================================
-   Tablet
+   Large Desktop / TV / Ultrawide
    ======================================== */
 
-@media (max-width: 800px) {
-  .home-cta-section {
-    padding: 50px 0 55px;
+@media (min-width: 1800px) {
+  .home-cta-container {
+    width: min(calc(100% - var(--page-padding)), 1350px);
   }
 
+  .home-cta-content {
+    max-width: 760px;
+
+    padding: 52px 35px;
+  }
+
+  .home-cta-title {
+    font-size: clamp(2rem, 2.2vw, 2.8rem);
+  }
+
+  .home-cta-description {
+    max-width: 580px;
+
+    font-size: 0.82rem;
+  }
+}
+
+/* ========================================
+   Very Large / 2K / 4K Displays
+   ======================================== */
+
+@media (min-width: 2400px) {
   .home-cta-container {
-    width: min(100% - 40px, 1100px);
+    width: min(calc(100% - var(--page-padding)), 1550px);
+  }
+
+  .home-cta-content {
+    max-width: 850px;
+
+    padding: 60px 40px;
+  }
+
+  .home-cta-title {
+    font-size: clamp(2.2rem, 2vw, 3.1rem);
+  }
+
+  .home-cta-description {
+    max-width: 650px;
+
+    font-size: 0.9rem;
+  }
+
+  .home-cta-primary,
+  .home-cta-secondary {
+    font-size: 0.72rem;
+  }
+}
+
+/* ========================================
+   Small Tablet
+   <= 850px
+   ======================================== */
+
+@media (max-width: 850px) {
+  .home-cta-section {
+    padding: 50px 0 55px;
   }
 
   .home-cta-content {
@@ -292,6 +345,7 @@
 
 /* ========================================
    Mobile
+   <= 600px
    ======================================== */
 
 @media (max-width: 600px) {
@@ -300,8 +354,6 @@
   }
 
   .home-cta-container {
-    width: min(100% - 28px, 1100px);
-
     border-radius: 17px;
   }
 

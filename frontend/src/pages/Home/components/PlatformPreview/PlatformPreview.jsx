@@ -1,4 +1,7 @@
+import { Link } from "react-router-dom";
+
 import platformPreview from "../../../../assets/platform/platform-preview.png";
+
 import "./PlatformPreview.css";
 
 function PlatformPreview() {
@@ -35,10 +38,10 @@ function PlatformPreview() {
             <span>Connected</span>
           </div>
 
-          <a className="platform-preview-link" href="/demo">
+          <Link className="platform-preview-link" to="/demo">
             Explore the Demo
             <span aria-hidden="true">→</span>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

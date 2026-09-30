@@ -1,4 +1,11 @@
+/* =========================================================
+   Site Header
+   ========================================================= */
+
 .site-header {
+  position: relative;
+  z-index: 1000;
+
   width: 100%;
 
   background: rgba(7, 11, 23, 0.82);
@@ -8,18 +15,45 @@
   -webkit-backdrop-filter: blur(18px);
 }
 
+/* =========================================================
+   Header Container
+   ========================================================= */
+
 .header-container {
-  width: min(100% - 48px, 1440px);
-  height: 60px;
+  width: min(calc(100% - var(--page-padding)), var(--page-max-width));
+
+  height: var(--header-height);
+
   margin: 0 auto;
 
   display: flex;
   align-items: center;
+
   gap: 2rem;
 }
 
+/* =========================================================
+   Brand
+   ========================================================= */
+
 .brand {
+  display: inline-flex;
+  align-items: center;
+
   flex-shrink: 0;
+
+  gap: 8px;
+
+  text-decoration: none;
+}
+
+.brand-logo {
+  display: block;
+
+  width: auto;
+  height: 50px;
+
+  object-fit: contain;
 }
 
 .brand-name {
@@ -30,28 +64,21 @@
   background: var(--gradient-glow);
   background-clip: text;
   -webkit-background-clip: text;
+
   color: transparent;
 
   text-shadow: 0 0 24px rgba(139, 92, 246, 0.25);
 }
 
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px; /* Adjusts the spacing between the logo and the text */
-  text-decoration: none;
-}
-
-.brand-logo {
-  height: 50px; /* Set this to match your header size */
-  width: auto; /* Maintains the original aspect ratio of your PNG */
-  object-fit: contain;
-}
+/* =========================================================
+   Desktop Navigation
+   ========================================================= */
 
 .main-navigation {
   display: flex;
   align-items: center;
   justify-content: center;
+
   gap: 1.65rem;
 
   margin-left: auto;
@@ -59,11 +86,15 @@
 
 .nav-link {
   position: relative;
-  padding: 2rem 0;
+
+  padding: 1.65rem 0;
 
   font-size: 0.9rem;
   font-weight: 500;
+
   color: var(--color-text-primary);
+
+  white-space: nowrap;
 
   transition: color 0.2s ease;
 }
@@ -74,19 +105,30 @@
 
 .nav-link.active::after {
   content: "";
+
   position: absolute;
+
   left: 0;
   right: 0;
-  bottom: 1.4rem;
+  bottom: 1.15rem;
 
   height: 2px;
+
   background: var(--gradient-glow);
+
   box-shadow: var(--glow-primary);
 }
+
+/* =========================================================
+   Desktop Actions
+   ========================================================= */
 
 .header-actions {
   display: flex;
   align-items: center;
+
+  flex-shrink: 0;
+
   gap: 1rem;
 
   margin-left: 1rem;
@@ -96,15 +138,20 @@
   display: grid;
   place-items: center;
 
+  flex-shrink: 0;
+
   width: 42px;
   height: 42px;
+
   padding: 0;
 
   border: 0;
+
   background: transparent;
   color: var(--color-text-primary);
 
   font-size: 1.5rem;
+
   cursor: pointer;
 }
 
@@ -112,20 +159,26 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
+  flex-shrink: 0;
+
   gap: 0.7rem;
 
-  height: 36px;
-  padding: 0.75rem 1.25rem;
+  min-height: 36px;
+
+  padding: 0.65rem 1.25rem;
 
   background: var(--gradient-primary);
   color: var(--color-on-primary);
 
   border: 1px solid var(--color-border-bright);
   border-radius: 8px;
+
   box-shadow: var(--glow-primary);
 
   font-size: 0.9rem;
   font-weight: 600;
+
   white-space: nowrap;
 
   transition:
@@ -136,5 +189,394 @@
 
 .get-started-button:hover {
   transform: translateY(-2px);
+
   box-shadow: var(--glow-strong);
+}
+
+/* =========================================================
+   Hamburger Button
+
+   Hidden on desktop.
+   ========================================================= */
+
+.menu-button {
+  display: none;
+
+  width: 44px;
+  height: 44px;
+
+  margin-left: auto;
+  padding: 9px;
+
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.03);
+
+  cursor: pointer;
+}
+
+.menu-button-line {
+  display: block;
+
+  width: 22px;
+  height: 2px;
+
+  margin: 4px auto;
+
+  border-radius: 999px;
+
+  background: var(--color-text-primary);
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+/* Hamburger -> X */
+
+.menu-button.open .menu-button-line:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.menu-button.open .menu-button-line:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-button.open .menu-button-line:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* =========================================================
+   Mobile Menu Backdrop
+   ========================================================= */
+
+.mobile-menu-backdrop {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 1100;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 0;
+
+  border: 0;
+
+  background: rgba(0, 0, 0, 0.64);
+
+  opacity: 0;
+  visibility: hidden;
+
+  cursor: pointer;
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.mobile-menu-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* =========================================================
+   Mobile Side Menu
+   ========================================================= */
+
+.mobile-menu {
+  position: fixed;
+
+  top: 0;
+  right: 0;
+
+  z-index: 1200;
+
+  display: flex;
+  flex-direction: column;
+
+  width: min(86vw, 380px);
+  height: 100dvh;
+
+  padding: 20px;
+
+  overflow-y: auto;
+
+  background: linear-gradient(
+    180deg,
+    rgba(18, 8, 35, 0.98),
+    rgba(7, 11, 23, 0.99)
+  );
+
+  border-left: 1px solid var(--color-border-bright);
+
+  box-shadow:
+    -20px 0 60px rgba(0, 0, 0, 0.45),
+    -5px 0 30px rgba(124, 58, 237, 0.12);
+
+  transform: translateX(105%);
+
+  visibility: hidden;
+
+  transition:
+    transform 0.32s ease,
+    visibility 0.32s ease;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+
+  visibility: visible;
+}
+
+/* =========================================================
+   Mobile Menu Header
+   ========================================================= */
+
+.mobile-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  padding-bottom: 18px;
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+.mobile-menu-brand {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  color: var(--color-text-primary);
+
+  font-size: 1.4rem;
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+.mobile-menu-logo {
+  display: block;
+
+  width: auto;
+  height: 44px;
+
+  object-fit: contain;
+}
+
+.mobile-menu-close {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--color-text-primary);
+
+  font-size: 1.8rem;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.mobile-menu-close:hover {
+  background: rgba(124, 58, 237, 0.12);
+
+  border-color: var(--color-border-bright);
+}
+
+/* =========================================================
+   Mobile Navigation
+   ========================================================= */
+
+.mobile-navigation {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+
+  padding: 22px 0;
+}
+
+.mobile-nav-link {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  min-height: 46px;
+
+  padding: 0 14px;
+
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  color: var(--color-text-primary);
+
+  font-size: 0.98rem;
+  font-weight: 500;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.mobile-nav-link:hover {
+  color: var(--color-primary);
+
+  background: rgba(124, 58, 237, 0.08);
+
+  transform: translateX(3px);
+}
+
+.mobile-nav-link.active {
+  color: var(--color-primary);
+
+  background: rgba(124, 58, 237, 0.12);
+
+  border-color: rgba(139, 92, 246, 0.18);
+}
+
+/* =========================================================
+   Mobile Actions
+   ========================================================= */
+
+.mobile-menu-actions {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+
+  margin-top: auto;
+  padding-top: 20px;
+
+  border-top: 1px solid var(--color-border);
+}
+
+.mobile-search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  width: 100%;
+  min-height: 46px;
+
+  padding: 0 16px;
+
+  border: 1px solid var(--color-border);
+  border-radius: 9px;
+
+  background: rgba(255, 255, 255, 0.03);
+
+  color: var(--color-text-primary);
+
+  font: inherit;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.mobile-get-started-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  width: 100%;
+  min-height: 46px;
+
+  padding: 0 16px;
+
+  border: 1px solid var(--color-border-bright);
+  border-radius: 9px;
+
+  background: var(--gradient-primary);
+
+  color: var(--color-on-primary);
+
+  box-shadow: var(--glow-primary);
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+/* =========================================================
+   Tablet / Mobile Header
+   <= 850px
+   ========================================================= */
+
+@media (max-width: 850px) {
+  .desktop-navigation,
+  .desktop-actions {
+    display: none;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  .header-container {
+    gap: 1rem;
+  }
+}
+
+/* =========================================================
+   Mobile
+   <= 600px
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .brand-name {
+    font-size: 1.5rem;
+  }
+
+  .brand-logo {
+    height: 44px;
+  }
+
+  .mobile-menu {
+    width: min(90vw, 360px);
+  }
+}
+
+/* =========================================================
+   Reduced Motion
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu,
+  .mobile-menu-backdrop,
+  .menu-button-line,
+  .mobile-nav-link {
+    transition: none;
+  }
 }

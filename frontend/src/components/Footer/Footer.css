@@ -19,10 +19,12 @@
 
 /* ========================================
    Container
+
+   Uses the global responsive width system.
    ======================================== */
 
 .footer-container {
-  width: min(100% - 48px, 1180px);
+  width: min(calc(100% - var(--page-padding)), var(--page-max-width));
 
   margin: 0 auto;
 }
@@ -38,7 +40,7 @@
     minmax(250px, 1.5fr)
     minmax(400px, 1fr);
 
-  gap: 80px;
+  gap: var(--content-gap);
 
   padding-bottom: 38px;
 }
@@ -84,7 +86,7 @@
 .footer-navigation {
   display: grid;
 
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 
   gap: 35px;
 }
@@ -194,7 +196,75 @@
 }
 
 /* ========================================
-   Tablet
+   Large Desktop / TV / Ultrawide
+   ======================================== */
+
+@media (min-width: 1800px) {
+  .footer-brand {
+    max-width: 420px;
+  }
+
+  .footer-navigation {
+    gap: 50px;
+  }
+
+  .footer-logo {
+    font-size: 1.5rem;
+  }
+
+  .footer-brand p {
+    font-size: 0.76rem;
+  }
+
+  .footer-column h3 {
+    font-size: 0.7rem;
+  }
+
+  .footer-column a,
+  .footer-column span {
+    font-size: 0.72rem;
+  }
+}
+
+/* ========================================
+   Very Large / 2K / 4K Displays
+   ======================================== */
+
+@media (min-width: 2400px) {
+  .footer-brand {
+    max-width: 480px;
+  }
+
+  .footer-navigation {
+    gap: 65px;
+  }
+
+  .footer-logo {
+    font-size: 1.65rem;
+  }
+
+  .footer-brand p {
+    font-size: 0.82rem;
+  }
+
+  .footer-column h3 {
+    font-size: 0.75rem;
+  }
+
+  .footer-column a,
+  .footer-column span {
+    font-size: 0.78rem;
+  }
+
+  .footer-bottom p,
+  .footer-legal a {
+    font-size: 0.68rem;
+  }
+}
+
+/* ========================================
+   Small Tablet
+   <= 850px
    ======================================== */
 
 @media (max-width: 850px) {
@@ -213,21 +283,19 @@
   }
 
   .footer-navigation {
+    width: 100%;
     max-width: 600px;
   }
 }
 
 /* ========================================
    Mobile
+   <= 600px
    ======================================== */
 
 @media (max-width: 600px) {
   .site-footer {
     padding: 38px 0 20px;
-  }
-
-  .footer-container {
-    width: min(100% - 32px, 1180px);
   }
 
   .footer-main {
@@ -237,7 +305,7 @@
   }
 
   .footer-navigation {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
     gap: 28px 22px;
   }
@@ -257,6 +325,7 @@
 
 /* ========================================
    Small Mobile
+   <= 400px
    ======================================== */
 
 @media (max-width: 400px) {

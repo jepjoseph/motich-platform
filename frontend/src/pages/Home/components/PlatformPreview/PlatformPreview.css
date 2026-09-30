@@ -27,7 +27,7 @@
   position: relative;
   z-index: 2;
 
-  width: min(100% - 48px, 1280px);
+  width: min(calc(100% - var(--page-padding)), var(--page-max-width));
 
   margin: 0 auto;
 }
@@ -268,16 +268,68 @@
 }
 
 /* ========================================
-   Tablet
+   Large Desktop / TV / Ultrawide
    ======================================== */
 
-@media (max-width: 900px) {
-  .platform-preview-section {
-    padding: 50px 0 55px;
+@media (min-width: 1800px) {
+  .platform-preview-heading {
+    max-width: 720px;
   }
 
-  .platform-preview-container {
-    width: min(100% - 40px, 1280px);
+  .platform-preview-visual,
+  .platform-preview-footer {
+    width: min(100%, 1400px);
+  }
+
+  .platform-preview-title {
+    font-size: clamp(2rem, 2.2vw, 2.8rem);
+  }
+
+  .platform-preview-description {
+    max-width: 600px;
+
+    font-size: 0.82rem;
+  }
+}
+
+/* ========================================
+   Very Large / 2K / 4K Displays
+   ======================================== */
+
+@media (min-width: 2400px) {
+  .platform-preview-heading {
+    max-width: 820px;
+  }
+
+  .platform-preview-visual,
+  .platform-preview-footer {
+    width: min(100%, 1700px);
+  }
+
+  .platform-preview-title {
+    font-size: clamp(2.2rem, 2vw, 3.1rem);
+  }
+
+  .platform-preview-description {
+    max-width: 680px;
+
+    font-size: 0.9rem;
+  }
+
+  .platform-preview-devices,
+  .platform-preview-link {
+    font-size: 0.72rem;
+  }
+}
+
+/* ========================================
+   Small Tablet
+   <= 850px
+   ======================================== */
+
+@media (max-width: 850px) {
+  .platform-preview-section {
+    padding: 50px 0 55px;
   }
 
   .platform-preview-heading {
@@ -296,15 +348,12 @@
 
 /* ========================================
    Mobile
+   <= 600px
    ======================================== */
 
 @media (max-width: 600px) {
   .platform-preview-section {
     padding: 45px 0 50px;
-  }
-
-  .platform-preview-container {
-    width: min(100% - 28px, 1280px);
   }
 
   .platform-preview-heading {

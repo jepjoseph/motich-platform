@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "./Footer.css";
 
 function Footer() {
@@ -10,9 +12,9 @@ function Footer() {
 
         <div className="footer-main">
           <div className="footer-brand">
-            <a className="footer-logo" href="/">
+            <Link className="footer-logo" to="/">
               MoticH
-            </a>
+            </Link>
 
             <p>Intelligent property management through connected technology.</p>
           </div>
@@ -25,18 +27,18 @@ function Footer() {
             <div className="footer-column">
               <h3>Company</h3>
 
-              <a href="/about">About</a>
-              <a href="/contact">Contact</a>
+              <Link to="/about">About</Link>
+              <Link to="/contact">Contact</Link>
             </div>
 
             <div className="footer-column">
               <h3>Explore</h3>
 
-              <a href="/solutions">Solutions</a>
-              <a href="/products">Products</a>
-              <a href="/demo">Demo</a>
-              <a href="/gallery">Gallery</a>
-              <a href="/blog">Blog</a>
+              <Link to="/solutions">Solutions</Link>
+              <Link to="/products">Products</Link>
+              <Link to="/demo">Demo</Link>
+              <Link to="/gallery">Gallery</Link>
+              <Link to="/blog">Blog</Link>
             </div>
 
             <div className="footer-column">
@@ -56,11 +58,11 @@ function Footer() {
           <p>© {new Date().getFullYear()} MoticH. All rights reserved.</p>
 
           <div className="footer-legal">
-            <a href="/privacy">Privacy</a>
+            <Link to="/privacy">Privacy</Link>
 
             <span aria-hidden="true">•</span>
 
-            <a href="/terms">Terms</a>
+            <Link to="/terms">Terms</Link>
           </div>
         </div>
       </div>

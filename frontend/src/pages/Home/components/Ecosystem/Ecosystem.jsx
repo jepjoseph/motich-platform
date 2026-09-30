@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import ecosystemImage1 from "../../../../assets/ecosystem/motich-ecosystem-01.png";
 import ecosystemImage2 from "../../../../assets/ecosystem/motich-ecosystem-02.png";
@@ -273,10 +274,10 @@ function Ecosystem() {
                 <strong>One intelligent platform.</strong>
               </p>
 
-              <a href="/solutions">
+              <Link to="/solutions">
                 Explore Solutions
                 <span aria-hidden="true">→</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
