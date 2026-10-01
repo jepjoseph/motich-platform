@@ -77,19 +77,30 @@ function Header() {
             Home
           </NavLink>
 
-          <NavLink
-            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
-            to="/about"
-          >
-            About
-          </NavLink>
+          <div className="nav-dropdown">
+            <NavLink
+              className={({ isActive }) =>
+                `nav-link nav-dropdown-trigger${isActive ? " active" : ""}`
+              }
+              to="/about"
+            >
+              About
+              <span className="nav-dropdown-arrow" aria-hidden="true">
+                ▾
+              </span>
+            </NavLink>
 
-          <NavLink
-            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
-            to="/team"
-          >
-            Team
-          </NavLink>
+            <div className="nav-dropdown-menu">
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-dropdown-link${isActive ? " active" : ""}`
+                }
+                to="/team"
+              >
+                Team
+              </NavLink>
+            </div>
+          </div>
 
           <NavLink
             className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
@@ -110,20 +121,6 @@ function Header() {
             to="/demo"
           >
             Demo
-          </NavLink>
-
-          <NavLink
-            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
-            to="/gallery"
-          >
-            Gallery
-          </NavLink>
-
-          <NavLink
-            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
-            to="/blog"
-          >
-            Blog
           </NavLink>
 
           <NavLink
@@ -216,25 +213,30 @@ function Header() {
             Home
           </NavLink>
 
-          <NavLink
-            className={({ isActive }) =>
-              `mobile-nav-link${isActive ? " active" : ""}`
-            }
-            to="/about"
-            onClick={closeMenu}
-          >
-            About
-          </NavLink>
+          <div className="mobile-nav-group">
+            <NavLink
+              className={({ isActive }) =>
+                `mobile-nav-link${isActive ? " active" : ""}`
+              }
+              to="/about"
+              onClick={closeMenu}
+            >
+              About
+            </NavLink>
 
-          <NavLink
-            className={({ isActive }) =>
-              `mobile-nav-link${isActive ? " active" : ""}`
-            }
-            to="/team"
-            onClick={closeMenu}
-          >
-            Team
-          </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                `mobile-nav-link mobile-nav-sublink${isActive ? " active" : ""}`
+              }
+              to="/team"
+              onClick={closeMenu}
+            >
+              <span className="mobile-nav-sublink-marker" aria-hidden="true">
+                └
+              </span>
+              Team
+            </NavLink>
+          </div>
 
           <NavLink
             className={({ isActive }) =>
@@ -264,26 +266,6 @@ function Header() {
             onClick={closeMenu}
           >
             Demo
-          </NavLink>
-
-          <NavLink
-            className={({ isActive }) =>
-              `mobile-nav-link${isActive ? " active" : ""}`
-            }
-            to="/gallery"
-            onClick={closeMenu}
-          >
-            Gallery
-          </NavLink>
-
-          <NavLink
-            className={({ isActive }) =>
-              `mobile-nav-link${isActive ? " active" : ""}`
-            }
-            to="/blog"
-            onClick={closeMenu}
-          >
-            Blog
           </NavLink>
 
           <NavLink
