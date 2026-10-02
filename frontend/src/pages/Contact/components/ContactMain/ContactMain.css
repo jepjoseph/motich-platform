@@ -1,0 +1,56 @@
+/* =========================================================
+   Contact Main
+   ========================================================= */
+
+.contact-main {
+  position: relative;
+
+  padding: 70px 0 90px;
+
+  background: #06040f;
+}
+
+.contact-main-container {
+  width: min(calc(100% - var(--page-padding)), var(--page-max-width));
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 48px;
+  align-items: start;
+}
+
+/* =========================================================
+   Tablet
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .contact-main {
+    padding: 60px 0 80px;
+  }
+
+  .contact-main-container {
+    gap: 32px;
+  }
+}
+
+@media (max-width: 850px) {
+  .contact-main-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* =========================================================
+   Mobile
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .contact-main {
+    padding: 50px 0 65px;
+  }
+
+  .contact-main-container {
+    gap: 32px;
+  }
+}

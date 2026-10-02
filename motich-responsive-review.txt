@@ -1,0 +1,4394 @@
+============================================================
+MOTICH RESPONSIVE LAYOUT REVIEW
+Generated: 10/01/2026 12:48:33
+============================================================
+
+============================================================
+FILE: .\frontend\index.html
+============================================================
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon1.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>frontend</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
+
+============================================================
+FILE: .\frontend\src\App.css
+============================================================
+
+#root {
+  min-height: 100vh;
+}
+
+
+============================================================
+FILE: .\frontend\src\App.jsx
+============================================================
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import MainLayout from "./layouts/MainLayout/MainLayout";
+
+import Home from "./pages/Home/Home";
+import About from "./pages/About/About";
+import Solutions from "./pages/Solutions/Solutions";
+import Products from "./pages/Products/Products";
+import Demo from "./pages/Demo/Demo";
+import Gallery from "./pages/Gallery/Gallery";
+import Blog from "./pages/Blog/Blog";
+import Team from "./pages/Team/Team";
+import Contact from "./pages/Contact/Contact";
+
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+
+import "./App.css";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <ScrollToTop />
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/solutions" element={<Solutions />} />
+
+          <Route path="/products" element={<Products />} />
+          <Route path="/demo" element={<Demo />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/contact" element={<Contact />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+
+
+============================================================
+FILE: .\frontend\src\components\Header\Header.css
+============================================================
+
+/* =========================================================
+   Site Header
+   ========================================================= */
+
+.site-header {
+  position: relative;
+  z-index: 1000;
+
+  width: 100%;
+
+  background: rgba(7, 11, 23, 0.82);
+  border-bottom: 1px solid var(--color-border);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  overflow-x: clip;
+}
+
+/* =========================================================
+   Header Container
+   ========================================================= */
+
+.header-container {
+  width: min(calc(100% - var(--page-padding)), var(--page-max-width));
+
+  height: var(--header-height);
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+
+  gap: 2rem;
+}
+
+/* =========================================================
+   Brand
+   ========================================================= */
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+
+  flex-shrink: 0;
+
+  gap: 8px;
+
+  text-decoration: none;
+}
+
+.brand-logo {
+  display: block;
+
+  width: auto;
+  height: 50px;
+
+  object-fit: contain;
+}
+
+.brand-name {
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+
+  background: var(--gradient-glow);
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  color: transparent;
+
+  text-shadow: 0 0 24px rgba(139, 92, 246, 0.25);
+}
+
+/* =========================================================
+   Desktop Navigation
+   ========================================================= */
+
+.main-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 1.65rem;
+
+  margin-left: auto;
+}
+
+.nav-link {
+  position: relative;
+
+  padding: 1.65rem 0;
+
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  color: var(--color-text-primary);
+
+  white-space: nowrap;
+
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--color-primary);
+}
+
+.nav-link.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 1.15rem;
+
+  height: 2px;
+
+  background: var(--gradient-glow);
+
+  box-shadow: var(--glow-primary);
+}
+
+/* =========================================================
+   Desktop Navigation Dropdown
+   ========================================================= */
+
+.nav-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.nav-dropdown-arrow {
+  font-size: 0.72rem;
+  transition: transform 0.2s ease;
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% - 0.65rem);
+  left: 50%;
+  z-index: 1050;
+
+  min-width: 150px;
+  padding: 8px;
+
+  background: rgba(12, 16, 30, 0.98);
+
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.35),
+    0 0 30px rgba(124, 58, 237, 0.08);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translate(-50%, 8px);
+
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease,
+    transform 0.2s ease;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+
+  transform: translate(-50%, 0);
+}
+
+.nav-dropdown:hover .nav-dropdown-arrow,
+.nav-dropdown:focus-within .nav-dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-link {
+  display: block;
+
+  padding: 10px 12px;
+
+  border-radius: 7px;
+
+  color: var(--color-text-primary);
+
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.nav-dropdown-link:hover,
+.nav-dropdown-link.active {
+  color: var(--color-primary);
+  background: rgba(124, 58, 237, 0.1);
+}
+
+/* =========================================================
+   Desktop Actions
+   ========================================================= */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+
+  flex-shrink: 0;
+
+  gap: 1rem;
+
+  margin-left: 1rem;
+}
+
+.search-button {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+  color: var(--color-text-primary);
+
+  font-size: 1.5rem;
+
+  cursor: pointer;
+}
+
+.get-started-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  gap: 0.7rem;
+
+  min-height: 36px;
+
+  padding: 0.65rem 1.25rem;
+
+  background: var(--gradient-primary);
+  color: var(--color-on-primary);
+
+  border: 1px solid var(--color-border-bright);
+  border-radius: 8px;
+
+  box-shadow: var(--glow-primary);
+
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.get-started-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow: var(--glow-strong);
+}
+
+/* =========================================================
+   Hamburger Button
+
+   Hidden on desktop.
+   ========================================================= */
+
+.menu-button {
+  display: none;
+
+  width: 44px;
+  height: 44px;
+
+  margin-left: auto;
+  padding: 9px;
+
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.03);
+
+  cursor: pointer;
+}
+
+.menu-button-line {
+  display: block;
+
+  width: 22px;
+  height: 2px;
+
+  margin: 4px auto;
+
+  border-radius: 999px;
+
+  background: var(--color-text-primary);
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+/* Hamburger -> X */
+
+.menu-button.open .menu-button-line:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.menu-button.open .menu-button-line:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-button.open .menu-button-line:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* =========================================================
+   Mobile Menu Backdrop
+   ========================================================= */
+
+.mobile-menu-backdrop {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 1100;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 0;
+
+  border: 0;
+
+  background: rgba(0, 0, 0, 0.64);
+
+  opacity: 0;
+  visibility: hidden;
+
+  cursor: pointer;
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.mobile-menu-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* =========================================================
+   Mobile Side Menu
+   ========================================================= */
+
+.mobile-menu {
+  position: fixed;
+
+  top: 0;
+  right: 0;
+
+  z-index: 1200;
+
+  display: flex;
+  flex-direction: column;
+
+  width: min(86vw, 380px);
+  height: 100dvh;
+
+  padding: 20px;
+
+  overflow-y: auto;
+
+  background: linear-gradient(
+    180deg,
+    rgba(18, 8, 35, 0.98),
+    rgba(7, 11, 23, 0.99)
+  );
+
+  border-left: 1px solid var(--color-border-bright);
+
+  box-shadow:
+    -20px 0 60px rgba(0, 0, 0, 0.45),
+    -5px 0 30px rgba(124, 58, 237, 0.12);
+
+  transform: translateX(100%);
+
+  visibility: hidden;
+
+  transition:
+    transform 0.32s ease,
+    visibility 0.32s ease;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+
+  visibility: visible;
+}
+
+/* =========================================================
+   Mobile Menu Header
+   ========================================================= */
+
+.mobile-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  padding-bottom: 18px;
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+.mobile-menu-brand {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  color: var(--color-text-primary);
+
+  font-size: 1.4rem;
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+.mobile-menu-logo {
+  display: block;
+
+  width: auto;
+  height: 44px;
+
+  object-fit: contain;
+}
+
+.mobile-menu-close {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--color-text-primary);
+
+  font-size: 1.8rem;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.mobile-menu-close:hover {
+  background: rgba(124, 58, 237, 0.12);
+
+  border-color: var(--color-border-bright);
+}
+
+/* =========================================================
+   Mobile Navigation
+   ========================================================= */
+
+.mobile-navigation {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+
+  padding: 22px 0;
+}
+
+.mobile-nav-link {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  min-height: 46px;
+
+  padding: 0 14px;
+
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  color: var(--color-text-primary);
+
+  font-size: 0.98rem;
+  font-weight: 500;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.mobile-nav-link:hover {
+  color: var(--color-primary);
+
+  background: rgba(124, 58, 237, 0.08);
+
+  transform: translateX(3px);
+}
+
+.mobile-nav-link.active {
+  color: var(--color-primary);
+
+  background: rgba(124, 58, 237, 0.12);
+
+  border-color: rgba(139, 92, 246, 0.18);
+}
+
+/* =========================================================
+   Mobile Navigation Submenu
+   ========================================================= */
+
+.mobile-nav-group {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.mobile-nav-sublink {
+  min-height: 40px;
+
+  margin-left: 18px;
+  padding-left: 18px;
+
+  color: var(--color-text-secondary);
+
+  font-size: 0.9rem;
+}
+
+.mobile-nav-sublink-marker {
+  margin-right: 8px;
+
+  color: var(--color-primary);
+
+  opacity: 0.7;
+}
+
+/* =========================================================
+   Mobile Actions
+   ========================================================= */
+
+.mobile-menu-actions {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+
+  margin-top: auto;
+  padding-top: 20px;
+
+  border-top: 1px solid var(--color-border);
+}
+
+.mobile-search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  width: 100%;
+  min-height: 46px;
+
+  padding: 0 16px;
+
+  border: 1px solid var(--color-border);
+  border-radius: 9px;
+
+  background: rgba(255, 255, 255, 0.03);
+
+  color: var(--color-text-primary);
+
+  font: inherit;
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.mobile-get-started-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  width: 100%;
+  min-height: 46px;
+
+  padding: 0 16px;
+
+  border: 1px solid var(--color-border-bright);
+  border-radius: 9px;
+
+  background: var(--gradient-primary);
+
+  color: var(--color-on-primary);
+
+  box-shadow: var(--glow-primary);
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+/* =========================================================
+   Tablet / Mobile Header
+   <= 850px
+   ========================================================= */
+
+@media (max-width: 850px) {
+  .desktop-navigation,
+  .desktop-actions {
+    display: none;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  .header-container {
+    gap: 1rem;
+  }
+}
+
+/* =========================================================
+   Mobile
+   <= 600px
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .brand-name {
+    font-size: 1.5rem;
+  }
+
+  .brand-logo {
+    height: 44px;
+  }
+
+  .mobile-menu {
+    width: min(90vw, 360px);
+  }
+}
+
+/* =========================================================
+   Reduced Motion
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu,
+  .mobile-menu-backdrop,
+  .menu-button-line,
+  .mobile-nav-link {
+    transition: none;
+  }
+}
+
+
+============================================================
+FILE: .\frontend\src\components\Header\Header.jsx
+============================================================
+
+import { useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+
+import motichLogo from "../../assets/logo/motich-logo.png";
+
+import "./Header.css";
+
+function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen((currentState) => !currentState);
+  };
+
+  /*
+   * Prevent the page behind the mobile menu
+   * from scrolling while the menu is open.
+   */
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
+  /*
+   * Allow the Escape key to close the menu.
+   */
+  useEffect(() => {
+    const handleEscapeKey = (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscapeKey);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscapeKey);
+    };
+  }, []);
+
+  return (
+    <header className="site-header">
+      <div className="header-container">
+        {/* Brand */}
+        <Link
+          className="brand"
+          to="/"
+          aria-label="MoticH home"
+          onClick={closeMenu}
+        >
+          <img src={motichLogo} alt="" className="brand-logo" />
+
+          <span className="brand-name">MoticH</span>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <nav
+          className="main-navigation desktop-navigation"
+          aria-label="Main navigation"
+        >
+          <NavLink
+            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
+            to="/"
+            end
+          >
+            Home
+          </NavLink>
+
+          <div className="nav-dropdown">
+            <NavLink
+              className={({ isActive }) =>
+                `nav-link nav-dropdown-trigger${isActive ? " active" : ""}`
+              }
+              to="/about"
+            >
+              About
+              <span className="nav-dropdown-arrow" aria-hidden="true">
+                ▾
+              </span>
+            </NavLink>
+
+            <div className="nav-dropdown-menu">
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-dropdown-link${isActive ? " active" : ""}`
+                }
+                to="/team"
+              >
+                Team
+              </NavLink>
+            </div>
+          </div>
+
+          <NavLink
+            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
+            to="/solutions"
+          >
+            Solutions
+          </NavLink>
+
+          <NavLink
+            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
+            to="/products"
+          >
+            Products
+          </NavLink>
+
+          <NavLink
+            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
+            to="/demo"
+          >
+            Demo
+          </NavLink>
+
+          <NavLink
+            className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
+            to="/contact"
+          >
+            Contact
+          </NavLink>
+        </nav>
+
+        {/* Desktop Actions */}
+        <div className="header-actions desktop-actions">
+          <button
+            className="search-button"
+            type="button"
+            aria-label="Search"
+            title="Search"
+          >
+            <span aria-hidden="true">⌕</span>
+          </button>
+
+          <Link className="get-started-button" to="/login">
+            Get Started
+            <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+
+        {/* Mobile Hamburger Button */}
+        <button
+          className={`menu-button${isMenuOpen ? " open" : ""}`}
+          type="button"
+          aria-label={
+            isMenuOpen ? "Close navigation menu" : "Open navigation menu"
+          }
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-navigation"
+          onClick={toggleMenu}
+        >
+          <span className="menu-button-line" />
+          <span className="menu-button-line" />
+          <span className="menu-button-line" />
+        </button>
+      </div>
+
+      {/* Mobile Backdrop */}
+      <button
+        className={`mobile-menu-backdrop${isMenuOpen ? " open" : ""}`}
+        type="button"
+        aria-label="Close navigation menu"
+        onClick={closeMenu}
+      />
+
+      {/* Mobile Side Menu */}
+      <aside
+        id="mobile-navigation"
+        className={`mobile-menu${isMenuOpen ? " open" : ""}`}
+        aria-hidden={!isMenuOpen}
+      >
+        <div className="mobile-menu-header">
+          <Link
+            className="mobile-menu-brand"
+            to="/"
+            onClick={closeMenu}
+            aria-label="MoticH home"
+          >
+            <img src={motichLogo} alt="" className="mobile-menu-logo" />
+
+            <span>MoticH</span>
+          </Link>
+
+          <button
+            className="mobile-menu-close"
+            type="button"
+            aria-label="Close navigation menu"
+            onClick={closeMenu}
+          >
+            ×
+          </button>
+        </div>
+
+        <nav className="mobile-navigation" aria-label="Mobile navigation">
+          <NavLink
+            className={({ isActive }) =>
+              `mobile-nav-link${isActive ? " active" : ""}`
+            }
+            to="/"
+            end
+            onClick={closeMenu}
+          >
+            Home
+          </NavLink>
+
+          <div className="mobile-nav-group">
+            <NavLink
+              className={({ isActive }) =>
+                `mobile-nav-link${isActive ? " active" : ""}`
+              }
+              to="/about"
+              onClick={closeMenu}
+            >
+              About
+            </NavLink>
+
+            <NavLink
+              className={({ isActive }) =>
+                `mobile-nav-link mobile-nav-sublink${isActive ? " active" : ""}`
+              }
+              to="/team"
+              onClick={closeMenu}
+            >
+              <span className="mobile-nav-sublink-marker" aria-hidden="true">
+                └
+              </span>
+              Team
+            </NavLink>
+          </div>
+
+          <NavLink
+            className={({ isActive }) =>
+              `mobile-nav-link${isActive ? " active" : ""}`
+            }
+            to="/solutions"
+            onClick={closeMenu}
+          >
+            Solutions
+          </NavLink>
+
+          <NavLink
+            className={({ isActive }) =>
+              `mobile-nav-link${isActive ? " active" : ""}`
+            }
+            to="/products"
+            onClick={closeMenu}
+          >
+            Products
+          </NavLink>
+
+          <NavLink
+            className={({ isActive }) =>
+              `mobile-nav-link${isActive ? " active" : ""}`
+            }
+            to="/demo"
+            onClick={closeMenu}
+          >
+            Demo
+          </NavLink>
+
+          <NavLink
+            className={({ isActive }) =>
+              `mobile-nav-link${isActive ? " active" : ""}`
+            }
+            to="/contact"
+            onClick={closeMenu}
+          >
+            Contact
+          </NavLink>
+        </nav>
+
+        <div className="mobile-menu-actions">
+          <button className="mobile-search-button" type="button">
+            <span aria-hidden="true">⌕</span>
+            Search
+          </button>
+
+          <Link
+            className="mobile-get-started-button"
+            to="/login"
+            onClick={closeMenu}
+          >
+            Get Started
+            <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+      </aside>
+    </header>
+  );
+}
+
+export default Header;
+
+
+============================================================
+FILE: .\frontend\src\pages\Home\components\Ecosystem\Ecosystem.css
+============================================================
+
+/* ========================================
+   Ecosystem Section
+   ======================================== */
+
+.ecosystem-section {
+  position: relative;
+
+  padding: 40px 0;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 70% 45%,
+      rgba(76, 29, 149, 0.16) 0%,
+      rgba(18, 5, 31, 0.08) 35%,
+      transparent 65%
+    ),
+    linear-gradient(
+      180deg,
+      var(--color-background) 0%,
+      rgba(18, 5, 31, 1) 50%,
+      var(--color-background) 100%
+    );
+}
+
+/* ========================================
+   Container
+   ======================================== */
+
+.ecosystem-container {
+  position: relative;
+  z-index: 2;
+
+  width: min(calc(100% - var(--page-padding)), var(--page-max-width));
+
+  margin: 0 auto;
+}
+
+/* ========================================
+   Section Heading
+   ======================================== */
+.ecosystem-heading {
+  max-width: 680px;
+
+  margin: 0 auto 35px;
+
+  text-align: center;
+}
+
+.ecosystem-eyebrow {
+  margin: 0 0 6px;
+
+  color: var(--color-accent);
+
+  font-size: 0.58rem;
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  text-shadow: 0 0 10px rgba(124, 58, 237, 0.4);
+}
+
+.ecosystem-title {
+  margin: 0;
+
+  color: var(--color-text-primary);
+
+  font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+  font-weight: 700;
+
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.ecosystem-title span {
+  background: var(--gradient-glow);
+
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  color: transparent;
+
+  filter: drop-shadow(0 0 12px rgba(124, 58, 237, 0.25));
+}
+
+.ecosystem-description {
+  max-width: 540px;
+
+  margin: 12px auto 0;
+
+  color: var(--color-text-secondary);
+
+  font-size: 0.8rem;
+
+  line-height: 1.55;
+}
+
+/* ========================================
+   Main Ecosystem Content
+   ======================================== */
+
+.ecosystem-content {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.5fr)
+    minmax(260px, 0.5fr);
+
+  align-items: center;
+
+  gap: var(--content-gap);
+}
+
+/* ========================================
+   Ecosystem Property Visualization
+   ======================================== */
+
+.ecosystem-visual {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  isolation: isolate;
+}
+
+/*
+   Soft purple glow behind the image.
+
+   This helps the dark-blue image background
+   transition naturally into the MoticH section.
+*/
+
+.ecosystem-visual-glow {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 90%;
+  height: 85%;
+
+  transform: translate(-50%, -50%);
+
+  background: radial-gradient(
+    ellipse at center,
+    rgba(124, 58, 237, 0.22) 0%,
+    rgba(76, 29, 149, 0.113) 35%,
+    rgba(18, 5, 31, 0.05) 58%,
+    transparent 75%
+  );
+
+  filter: blur(45px);
+
+  pointer-events: none;
+}
+
+/* ========================================
+   Ecosystem Slideshow
+   ======================================== */
+
+.ecosystem-slideshow {
+  position: relative;
+  z-index: 2;
+
+  width: min(100%, 950px);
+
+  aspect-ratio: 16 / 9;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========================================
+   Ecosystem Slides
+   ======================================== */
+
+.ecosystem-slide {
+  position: absolute;
+
+  margin-top: 22px;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 0.9s ease,
+    visibility 0.9s ease;
+}
+
+.ecosystem-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ========================================
+   Slideshow Arrows
+   ======================================== */
+
+.ecosystem-slide-arrow {
+  position: absolute;
+  z-index: 10;
+
+  top: 50%;
+
+  width: 34px;
+  height: 34px;
+
+  padding: 0;
+
+  display: grid;
+  place-items: center;
+
+  transform: translateY(-50%);
+
+  color: rgba(255, 255, 255, 0.88);
+
+  background: rgba(18, 5, 31, 0.52);
+
+  border: 1px solid rgba(167, 139, 250, 0.24);
+  border-radius: 50%;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  font-family: inherit;
+  font-size: 1.3rem;
+  line-height: 1;
+
+  cursor: pointer;
+
+  opacity: 0;
+
+  transition:
+    opacity 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.ecosystem-slide-arrow-left {
+  left: 18px;
+}
+
+.ecosystem-slide-arrow-right {
+  right: 18px;
+}
+
+.ecosystem-visual:hover .ecosystem-slide-arrow,
+.ecosystem-slide-arrow:focus-visible {
+  opacity: 1;
+}
+
+.ecosystem-slide-arrow:hover {
+  background: rgba(76, 29, 149, 0.72);
+
+  border-color: rgba(196, 181, 253, 0.5);
+
+  box-shadow:
+    0 0 10px rgba(167, 139, 250, 0.25),
+    0 0 20px rgba(124, 58, 237, 0.2);
+}
+
+/* ========================================
+   Ecosystem Slider Wrapper
+   ======================================== */
+
+.ecosystem-slider {
+  width: min(100%, 950px);
+
+  margin: 28px 0px 0px 0px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========================================
+   Slide Information
+   ======================================== */
+
+.ecosystem-slide-info {
+  min-height: 48px;
+
+  margin: 28px 0px 0px 0px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+}
+
+/* ========================================
+   Slide Caption
+   ======================================== */
+
+.ecosystem-slide-caption {
+  margin: 10;
+
+  color: rgba(220, 215, 235, 0.82);
+
+  font-size: 0.64rem;
+  font-weight: 500;
+
+  line-height: 1.4;
+  letter-spacing: 0.015em;
+
+  text-align: center;
+}
+
+/* ========================================
+   Slideshow Dots
+   ======================================== */
+
+.ecosystem-slide-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+}
+
+.ecosystem-slide-dot {
+  width: 6px;
+  height: 6px;
+
+  padding: 0;
+
+  background: rgba(255, 255, 255, 0.3);
+
+  border: 0;
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transition:
+    width 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.ecosystem-slide-dot:hover {
+  background: rgba(196, 181, 253, 0.75);
+}
+
+.ecosystem-slide-dot.is-active {
+  width: 18px;
+
+  border-radius: 999px;
+
+  background: #a78bfa;
+
+  box-shadow:
+    0 0 7px rgba(167, 139, 250, 0.8),
+    0 0 14px rgba(124, 58, 237, 0.45);
+}
+/* ========================================
+   Ecosystem Image
+   ======================================== */
+/*
+.ecosystem-image {
+  position: relative;
+  z-index: 2;
+
+  display: block;
+
+  width: min(100%, 950px);
+  max-height: 450px;
+
+  object-fit: contain;
+  
+
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    black 0%,
+    black 58%,
+    rgba(0, 0, 0, 0.95) 68%,
+    rgba(0, 0, 0, 0.72) 78%,
+    rgba(0, 0, 0, 0.35) 8%,
+    transparent 100%
+  );
+
+  mask-image: radial-gradient(
+    ellipse at center,
+    black 0%,
+    black 58%,
+    rgba(0, 0, 0, 0.95) 68%,
+    rgba(0, 0, 0, 0.72) 78%,
+    rgba(0, 0, 0, 0.35) 88%,
+    transparent 100%
+  );
+
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+
+  filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.25))
+    drop-shadow(0 0 25px rgba(124, 58, 237, 0.512));
+
+  user-select: none;
+}
+  */
+
+.ecosystem-image {
+  z-index: 2;
+
+  display: block;
+
+  object-fit: contain;
+
+  /* Horizontal fade: left + right */
+  -webkit-mask-image:
+    linear-gradient(
+      to right,
+      transparent 0%,
+      black 0%,
+      black 90%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 0%,
+      black 90%,
+      transparent 100%
+    );
+
+  -webkit-mask-composite: source-in;
+
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent 0%,
+      black 0%,
+      black 100%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 0%,
+      black 100%,
+      transparent 100%
+    );
+
+  mask-composite: intersect;
+
+  filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.925))
+    drop-shadow(0 0 25px rgba(124, 58, 237, 0.512));
+
+  user-select: none;
+}
+/* ========================================
+   Connected Systems Panel
+   ======================================== */
+
+.ecosystem-systems {
+  position: relative;
+
+  padding: 20px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(30, 12, 50, 0.62) 0%,
+    rgba(18, 5, 31, 0.48) 55%,
+    rgba(8, 8, 24, 0.52) 100%
+  );
+
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 18px;
+
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.25),
+    inset 0 0 30px rgba(124, 58, 237, 0.035);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* ========================================
+   Panel Header
+   ======================================== */
+
+.ecosystem-systems-header {
+  padding-bottom: 14px;
+  margin-bottom: 6px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  border-bottom: 1px solid rgba(139, 92, 246, 0.14);
+}
+
+.ecosystem-systems-header p {
+  margin: 0;
+
+  color: var(--color-text-primary);
+
+  font-size: 0.68rem;
+  font-weight: 700;
+
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+/* ========================================
+   Online Status
+   ======================================== */
+
+.ecosystem-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  color: rgba(220, 215, 235, 0.72);
+
+  font-size: 0.56rem;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+.ecosystem-status-dot {
+  width: 6px;
+  height: 6px;
+
+  flex-shrink: 0;
+
+  background: #a78bfa;
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 5px rgba(167, 139, 250, 0.9),
+    0 0 10px rgba(124, 58, 237, 0.6);
+}
+
+/* ========================================
+   System List
+   ======================================== */
+
+.ecosystem-system-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========================================
+   Individual System
+   ======================================== */
+
+.ecosystem-system {
+  min-height: 40px;
+
+  padding: 7px 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  border-bottom: 1px solid rgba(139, 92, 246, 0.08);
+
+  transition:
+    background 0.2s ease,
+    padding 0.2s ease;
+}
+
+.ecosystem-system:last-child {
+  border-bottom: 0;
+}
+
+.ecosystem-system:hover {
+  padding-left: 9px;
+  padding-right: 9px;
+
+  background: rgba(124, 58, 237, 0.07);
+
+  border-radius: 8px;
+}
+
+/* ========================================
+   Icon + System Name
+   ======================================== */
+
+.ecosystem-system-info {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: var(--color-text-primary);
+
+  font-size: 0.67rem;
+  font-weight: 500;
+}
+
+.ecosystem-system-icon {
+  width: 25px;
+  height: 25px;
+
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  color: #c4b5fd;
+
+  background: radial-gradient(
+    circle,
+    rgba(139, 92, 246, 0.18) 0%,
+    rgba(76, 29, 149, 0.08) 65%,
+    transparent 100%
+  );
+
+  border: 1px solid rgba(167, 139, 250, 0.17);
+  border-radius: 7px;
+
+  font-size: 0.76rem;
+  line-height: 1;
+
+  filter: drop-shadow(0 0 5px rgba(124, 58, 237, 0.35));
+}
+
+/* ========================================
+   Connected State
+   ======================================== */
+
+.system-state {
+  flex-shrink: 0;
+
+  color: #c4b5fd;
+
+  font-size: 0.52rem;
+  font-weight: 500;
+
+  letter-spacing: 0.025em;
+
+  opacity: 0.72;
+}
+
+/* ========================================
+   Panel Footer
+   ======================================== */
+
+.ecosystem-systems-footer {
+  padding-top: 15px;
+  margin-top: 8px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+
+  border-top: 1px solid rgba(139, 92, 246, 0.14);
+}
+
+.ecosystem-systems-footer p {
+  margin: 0;
+
+  color: var(--color-text-secondary);
+
+  font-size: 0.6rem;
+  line-height: 1.45;
+}
+
+.ecosystem-systems-footer strong {
+  color: var(--color-text-primary);
+
+  font-weight: 600;
+}
+
+/* ========================================
+   Explore Solutions Link
+   ======================================== */
+
+.ecosystem-systems-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  flex-shrink: 0;
+
+  color: #c4b5fd;
+
+  font-size: 0.58rem;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease,
+    text-shadow 0.2s ease;
+}
+
+.ecosystem-systems-footer a:hover {
+  color: #ffffff;
+
+  transform: translateX(3px);
+
+  text-shadow: 0 0 10px rgba(167, 139, 250, 0.65);
+}
+
+/* ========================================
+   Tablet
+   <= 1100px
+   ======================================== */
+
+@media (max-width: 1100px) {
+  .ecosystem-content {
+    grid-template-columns: 1fr;
+
+    gap: var(--content-gap);
+  }
+
+  .ecosystem-systems {
+    width: min(100%, 700px);
+
+    margin: 0 auto;
+
+    padding: 20px;
+  }
+
+  .ecosystem-system-list {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    column-gap: 24px;
+  }
+
+  .ecosystem-system:nth-child(9) {
+    border-bottom: 0;
+  }
+}
+
+/* ========================================
+   Mobile
+   <= 600px
+   ======================================== */
+
+@media (max-width: 600px) {
+  .ecosystem-section {
+    padding: 60px 0;
+  }
+
+  .ecosystem-systems {
+    padding: 16px;
+
+    border-radius: 15px;
+  }
+
+  .ecosystem-systems-header {
+    align-items: flex-start;
+  }
+
+  .ecosystem-system-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ecosystem-system {
+    min-height: 39px;
+  }
+
+  .ecosystem-system:nth-child(9) {
+    border-bottom: 1px solid rgba(139, 92, 246, 0.08);
+  }
+
+  .ecosystem-system:last-child {
+    border-bottom: 0;
+  }
+
+  .ecosystem-systems-footer {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+}
+
+/* ========================================
+   Small Tablet
+   <= 850px
+   ======================================== */
+
+@media (max-width: 850px) {
+  .ecosystem-section {
+    padding: 70px 0;
+  }
+
+  .ecosystem-heading {
+    margin-bottom: 40px;
+  }
+
+  .ecosystem-title {
+    font-size: clamp(2rem, 7vw, 2.8rem);
+  }
+
+  .ecosystem-description {
+    font-size: 0.82rem;
+  }
+}
+
+/* ========================================
+   Reduced Motion
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .ecosystem-system,
+  .ecosystem-systems-footer a,
+  .ecosystem-slide,
+  .ecosystem-slide-arrow,
+  .ecosystem-slide-dot {
+    transition: none;
+  }
+
+  .ecosystem-system:hover {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .ecosystem-systems-footer a:hover {
+    transform: none;
+  }
+}
+
+
+============================================================
+FILE: .\frontend\src\pages\Home\components\Ecosystem\Ecosystem.jsx
+============================================================
+
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+import ecosystemImage1 from "../../../../assets/ecosystem/motich-ecosystem-01.png";
+import ecosystemImage2 from "../../../../assets/ecosystem/motich-ecosystem-02.png";
+import ecosystemImage3 from "../../../../assets/ecosystem/motich-ecosystem-03.png";
+import ecosystemImage4 from "../../../../assets/ecosystem/motich-ecosystem-04.png";
+
+import "./Ecosystem.css";
+
+const ecosystemSlides = [
+  {
+    image: ecosystemImage1,
+    alt: "MoticH connected smart property ecosystem",
+    caption: "The MoticH Connected Property Ecosystem",
+  },
+  {
+    image: ecosystemImage2,
+    alt: "EEMS System Architecture",
+    caption: "EEMS System Architecture",
+  },
+  {
+    image: ecosystemImage3,
+    alt: "EEMS Energy Usage Management",
+    caption: "EEMS Energy Usage Management",
+  },
+  {
+    image: ecosystemImage4,
+    alt: "EEMS camera system access",
+    caption: "EEMS Camera System Access",
+  },
+];
+
+function Ecosystem() {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (isPaused || ecosystemSlides.length <= 1) {
+      return undefined;
+    }
+
+    const interval = window.setInterval(() => {
+      setActiveSlide(
+        (currentSlide) => (currentSlide + 1) % ecosystemSlides.length,
+      );
+    }, 5000);
+
+    return () => window.clearInterval(interval);
+  }, [isPaused]);
+
+  const showPreviousSlide = () => {
+    setActiveSlide((currentSlide) =>
+      currentSlide === 0 ? ecosystemSlides.length - 1 : currentSlide - 1,
+    );
+  };
+
+  const showNextSlide = () => {
+    setActiveSlide(
+      (currentSlide) => (currentSlide + 1) % ecosystemSlides.length,
+    );
+  };
+
+  return (
+    <section className="ecosystem-section">
+      <div className="ecosystem-container">
+        {/* ========================================
+            Section Introduction
+            ======================================== */}
+
+        <div className="ecosystem-heading">
+          <p className="ecosystem-eyebrow">The MoticH Ecosystem</p>
+
+          <h2 className="ecosystem-title">
+            One Platform. <span>Your Entire Property.</span>
+          </h2>
+
+          <p className="ecosystem-description">
+            MoticH brings your connected systems into one intelligent
+            environment, giving you visibility, control, automation, and energy
+            insight from a centralized platform.
+          </p>
+        </div>
+
+        {/* ========================================
+            Ecosystem Visualization
+            ======================================== */}
+
+        <div className="ecosystem-content">
+          <div className="ecosystem-visual">
+            <div className="ecosystem-visual-glow" aria-hidden="true" />
+
+            <div className="ecosystem-slider">
+              <div
+                className="ecosystem-slideshow"
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+              >
+                {ecosystemSlides.map((slide, index) => (
+                  <img
+                    key={slide.image}
+                    className={`ecosystem-image ecosystem-slide ${
+                      index === activeSlide ? "is-active" : ""
+                    }`}
+                    src={slide.image}
+                    alt={slide.alt}
+                    aria-hidden={index !== activeSlide}
+                  />
+                ))}
+
+                {ecosystemSlides.length > 1 && (
+                  <>
+                    <button
+                      className="ecosystem-slide-arrow ecosystem-slide-arrow-left"
+                      type="button"
+                      onClick={showPreviousSlide}
+                      aria-label="Show previous ecosystem image"
+                    >
+                      ‹
+                    </button>
+
+                    <button
+                      className="ecosystem-slide-arrow ecosystem-slide-arrow-right"
+                      type="button"
+                      onClick={showNextSlide}
+                      aria-label="Show next ecosystem image"
+                    >
+                      ›
+                    </button>
+                  </>
+                )}
+              </div>
+
+              <div className="ecosystem-slide-info">
+                <p className="ecosystem-slide-caption">
+                  {ecosystemSlides[activeSlide].caption}
+                </p>
+
+                {ecosystemSlides.length > 1 && (
+                  <div
+                    className="ecosystem-slide-dots"
+                    aria-label="Ecosystem images"
+                  >
+                    {ecosystemSlides.map((slide, index) => (
+                      <button
+                        key={slide.image}
+                        className={`ecosystem-slide-dot ${
+                          index === activeSlide ? "is-active" : ""
+                        }`}
+                        type="button"
+                        onClick={() => setActiveSlide(index)}
+                        aria-label={`Show ecosystem image ${index + 1}`}
+                        aria-current={
+                          index === activeSlide ? "true" : undefined
+                        }
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* ========================================
+              Connected Systems
+              ======================================== */}
+
+          <div className="ecosystem-systems">
+            <div className="ecosystem-systems-header">
+              <p>Connected Systems</p>
+
+              <span className="ecosystem-status">
+                <span className="ecosystem-status-dot" />
+                Systems Online
+              </span>
+            </div>
+
+            <div className="ecosystem-system-list">
+              <div className="ecosystem-system">
+                <div className="ecosystem-system-info">
+                  <span className="ecosystem-system-icon">⚡</span>
+                  <span>Energy</span>
+                </div>
+
+                <span className="system-state">Connected</span>
+              </div>
+
+              <div className="ecosystem-system">
+                <div className="ecosystem-system-info">
+                  <span className="ecosystem-system-icon">💡</span>
+                  <span>Lighting</span>
+                </div>
+
+                <span className="system-state">Connected</span>
+              </div>
+
+              <div className="ecosystem-system">
+                <div className="ecosystem-system-info">
+                  <span className="ecosystem-system-icon">❄</span>
+                  <span>Climate</span>
+                </div>
+
+                <span className="system-state">Connected</span>
+              </div>
+
+              <div className="ecosystem-system">
+                <div className="ecosystem-system-info">
+                  <span className="ecosystem-system-icon">🛡</span>
+                  <span>Security</span>
+                </div>
+
+                <span className="system-state">Connected</span>
+              </div>
+
+              <div className="ecosystem-system">
+                <div className="ecosystem-system-info">
+                  <span className="ecosystem-system-icon">◉</span>
+                  <span>Cameras</span>
+                </div>
+
+                <span className="system-state">Connected</span>
+              </div>
+
+              <div className="ecosystem-system">
+                <div className="ecosystem-system-info">
+                  <span className="ecosystem-system-icon">🔒</span>
+                  <span>Access</span>
+                </div>
+
+                <span className="system-state">Connected</span>
+              </div>
+
+              <div className="ecosystem-system">
+                <div className="ecosystem-system-info">
+                  <span className="ecosystem-system-icon">▣</span>
+                  <span>Garage</span>
+                </div>
+
+                <span className="system-state">Connected</span>
+              </div>
+
+              <div className="ecosystem-system">
+                <div className="ecosystem-system-info">
+                  <span className="ecosystem-system-icon">💧</span>
+                  <span>Water</span>
+                </div>
+
+                <span className="system-state">Connected</span>
+              </div>
+
+              <div className="ecosystem-system">
+                <div className="ecosystem-system-info">
+                  <span className="ecosystem-system-icon">⌁</span>
+                  <span>Irrigation</span>
+                </div>
+
+                <span className="system-state">Connected</span>
+              </div>
+
+              <div className="ecosystem-system">
+                <div className="ecosystem-system-info">
+                  <span className="ecosystem-system-icon">⏻</span>
+                  <span>Power</span>
+                </div>
+
+                <span className="system-state">Connected</span>
+              </div>
+            </div>
+
+            <div className="ecosystem-systems-footer">
+              <p>
+                Everything connected.
+                <br />
+                <strong>One intelligent platform.</strong>
+              </p>
+
+              <Link to="/solutions">
+                Explore Solutions
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Ecosystem;
+
+
+============================================================
+FILE: .\frontend\src\pages\Home\components\Hero\Hero.css
+============================================================
+
+/* ========================================
+   Hero
+   ======================================== */
+
+.hero-section {
+  position: relative;
+
+  min-height: calc(100vh - var(--header-height));
+
+  overflow: hidden;
+
+  background: var(--color-background);
+}
+
+/* ========================================
+   Background Slideshow
+   ======================================== */
+
+.hero-backgrounds {
+  position: absolute;
+  inset: 0;
+
+  z-index: 0;
+
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  opacity: 0;
+
+  transform: scale(1.03);
+
+  transition:
+    opacity 1.4s ease-in-out,
+    transform 7s ease-out;
+}
+
+.hero-background-active {
+  opacity: 1;
+
+  transform: scale(1);
+}
+
+/*
+   Dark/purple directional overlay.
+
+   Left side is darker because the text is there.
+   Right side is more transparent so the house
+   remains visible behind phone.png.
+*/
+
+.hero-background-overlay {
+  position: absolute;
+  inset: 0;
+
+  z-index: 1;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(6, 3, 15, 0.94) 0%,
+      rgba(18, 5, 31, 0.86) 25%,
+      rgba(27, 11, 46, 0.62) 48%,
+      rgba(10, 8, 28, 0.28) 70%,
+      rgba(5, 7, 18, 0.18) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(5, 5, 15, 0.18) 0%,
+      rgba(5, 5, 15, 0.08) 55%,
+      rgba(5, 5, 15, 0.48) 100%
+    );
+
+  pointer-events: none;
+}
+
+/* ========================================
+   Container
+   ======================================== */
+
+.hero-container {
+  position: relative;
+  z-index: 2;
+
+  width: min(calc(100% - var(--page-padding)), var(--page-max-width));
+
+  min-height: calc(100vh - var(--header-height));
+
+  margin: 0 auto;
+  padding: 48px 0;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.8fr)
+    minmax(350px, 0.7fr);
+
+  align-items: center;
+
+  gap: var(--content-gap);
+}
+
+/* ========================================
+   Content
+   ======================================== */
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+
+  width: 100%;
+  max-width: 500px;
+}
+
+.hero-eyebrow {
+  margin: 0 0 10px;
+
+  color: var(--color-accent);
+
+  font-size: 0.64rem;
+  font-weight: 700;
+
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+
+  text-shadow: 0 0 12px rgba(124, 58, 237, 0.5);
+}
+
+/* ========================================
+   Title
+   ======================================== */
+
+.hero-title {
+  margin: 0;
+
+  max-width: 400px;
+
+  color: var(--color-text-primary);
+
+  font-size: clamp(2.1rem, 1.5vw, 3.8rem);
+  font-weight: 700;
+
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.65);
+}
+
+.hero-title-accent {
+  background: var(--gradient-glow);
+
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  color: transparent;
+
+  filter: drop-shadow(0 0 12px rgba(124, 58, 237, 0.28));
+}
+
+/* ========================================
+   Description
+   ======================================== */
+
+.hero-description {
+  max-width: 400px;
+
+  margin: 16px 0 0;
+
+  color: var(--color-text-secondary);
+
+  font-size: 0.78rem;
+
+  line-height: 1.5;
+
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* ========================================
+   Features
+   ======================================== */
+
+.hero-features {
+  width: 68%;
+
+  margin-top: 24px;
+
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 16px;
+}
+
+.hero-feature {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 7px;
+}
+
+/*
+   These are now real PNG icons.
+
+   No box is added by CSS.
+   If your PNG files have transparent backgrounds,
+   they will appear naturally over the Hero.
+*/
+
+.feature-icon {
+  display: block;
+
+  width: 30px;
+  height: 30px;
+
+  object-fit: contain;
+
+  filter: drop-shadow(0 0 7px rgba(124, 58, 237, 0.6));
+}
+
+.hero-feature h2 {
+  margin: 0;
+
+  color: var(--color-text-primary);
+
+  font-size: 0.68rem;
+  font-weight: 500;
+
+  line-height: 1.25;
+
+  text-shadow: 0 2px 7px rgba(0, 0, 0, 0.85);
+}
+
+/* ========================================
+   Actions
+   ======================================== */
+
+.hero-actions {
+  margin-top: 25px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 20px;
+}
+
+.hero-primary-button {
+  min-height: 40px;
+
+  padding: 0 1.15rem;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.65rem;
+
+  color: var(--color-on-primary);
+
+  background: var(--gradient-primary);
+
+  border: 1px solid var(--color-border-bright);
+
+  border-radius: 20px;
+
+  box-shadow: var(--glow-primary);
+
+  font-size: 0.72rem;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.hero-primary-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow: var(--glow-strong);
+}
+
+/* ========================================
+   Video Button
+   ======================================== */
+
+.hero-video-button {
+  padding: 0;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  color: var(--color-text-primary);
+
+  background: transparent;
+
+  border: 0;
+
+  font-size: 0.72rem;
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.play-icon {
+  width: 34px;
+  height: 34px;
+
+  display: grid;
+
+  place-items: center;
+
+  color: var(--color-accent);
+
+  background: rgba(18, 5, 31, 0.5);
+
+  border: 1px solid var(--color-border-bright);
+
+  border-radius: 50%;
+
+  box-shadow: 0 0 12px rgba(124, 58, 237, 0.18);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  font-size: 0.58rem;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.hero-video-button:hover .play-icon {
+  transform: scale(1.05);
+
+  box-shadow: var(--glow-primary);
+}
+
+/* ========================================
+   Phone Visual
+   ======================================== */
+
+.hero-visual {
+  position: relative;
+
+  z-index: 3;
+
+  min-height: 470px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+   Purple glow behind the transparent PNG.
+   It does not hide the background house.
+*/
+
+.visual-glow {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 380px;
+  height: 380px;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(124, 58, 237, 0.28) 0%,
+    rgba(76, 29, 149, 0.18) 40%,
+    transparent 72%
+  );
+
+  filter: blur(35px);
+
+  pointer-events: none;
+}
+
+/*
+   phone.png itself.
+
+   No background.
+   No card.
+   No border.
+
+   The transparent parts of phone.png allow
+   house1.png / house2.png to remain visible.
+*/
+
+.hero-phone-image {
+  position: relative;
+
+  z-index: 2;
+
+  display: block;
+
+  width: min(100%, 520px);
+  max-height: 600px;
+
+  object-fit: contain;
+
+  filter: drop-shadow(0 25px 40px rgba(0, 0, 0, 0.5))
+    drop-shadow(0 0 22px rgba(124, 58, 237, 0.3));
+
+  animation: phone-float 5s ease-in-out infinite;
+
+  user-select: none;
+
+  pointer-events: none;
+}
+
+/* ========================================
+   Phone Animation
+   ======================================== */
+
+@keyframes phone-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+/* ========================================
+   Responsive - Tablet
+   ======================================== */
+
+@media (max-width: 1100px) {
+  .hero-container {
+    grid-template-columns:
+      minmax(0, 1fr)
+      340px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.4rem, 4.5vw, 3.5rem);
+  }
+
+  .hero-phone-image {
+    width: min(100%, 420px);
+  }
+
+  .hero-visual {
+    min-height: 420px;
+  }
+}
+
+/* ========================================
+   Responsive - Small Tablet
+   ======================================== */
+
+@media (max-width: 850px) {
+  /*
+     Keep the original Hero composition:
+     content on the left, phone on the right.
+
+     The columns shrink proportionally instead
+     of stacking vertically.
+  */
+
+  .hero-container {
+    grid-template-columns:
+      minmax(0, 1.15fr)
+      minmax(0, 0.85fr);
+
+    padding: 40px 0;
+  }
+
+  /*
+     Keep the background centered and visible.
+     "cover" continues to fill the Hero while
+     adapting to the changing screen size.
+  */
+
+  .hero-background {
+    background-position: center center;
+    background-size: cover;
+  }
+
+  /*
+     Preserve the left-to-right overlay because
+     the text remains on the left.
+  */
+
+  .hero-background-overlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(6, 3, 15, 0.94) 0%,
+        rgba(18, 5, 31, 0.84) 38%,
+        rgba(27, 11, 46, 0.58) 62%,
+        rgba(5, 7, 18, 0.24) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(5, 5, 15, 0.16) 0%,
+        rgba(5, 5, 15, 0.08) 55%,
+        rgba(5, 5, 15, 0.48) 100%
+      );
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: none;
+  }
+
+  .hero-title {
+    font-size: clamp(1.9rem, 5.5vw, 2.8rem);
+  }
+
+  .hero-description {
+    max-width: 360px;
+
+    font-size: 0.76rem;
+  }
+
+  .hero-features {
+    width: 100%;
+
+    gap: 10px;
+  }
+
+  .feature-icon {
+    width: 27px;
+    height: 27px;
+  }
+
+  .hero-feature h2 {
+    font-size: 0.62rem;
+  }
+
+  .hero-actions {
+    gap: 14px;
+  }
+
+  .hero-visual {
+    min-width: 0;
+    min-height: 360px;
+  }
+
+  .hero-phone-image {
+    width: min(100%, 360px);
+    max-height: 430px;
+  }
+
+  .visual-glow {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* ========================================
+   Responsive - Mobile
+   ======================================== */
+
+@media (max-width: 600px) {
+  /*
+     Still preserve:
+     LEFT  = Hero content
+     RIGHT = animated phone
+
+     The content column gets slightly more
+     room because it contains the text.
+  */
+
+  .hero-container {
+    grid-template-columns:
+      minmax(0, 1.2fr)
+      minmax(0, 0.8fr);
+
+    padding: 30px 0;
+
+    gap: 12px;
+  }
+
+  /*
+     Keep the house filling the Hero.
+
+     The position can be adjusted later if
+     the important part of house1 is not centered.
+  */
+
+  .hero-background {
+    background-position: center center;
+    background-size: cover;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: none;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 7px;
+
+    font-size: 0.52rem;
+    letter-spacing: 0.14em;
+  }
+
+  .hero-title {
+    max-width: 100%;
+
+    font-size: clamp(1.55rem, 7vw, 2.2rem);
+
+    line-height: 0.98;
+  }
+
+  .hero-description {
+    max-width: 100%;
+
+    margin-top: 12px;
+
+    font-size: 0.68rem;
+
+    line-height: 1.45;
+  }
+
+  /*
+     Keep the four features compact.
+
+     2 × 2 works much better here than
+     turning them into four vertical rows.
+  */
+
+  .hero-features {
+    width: 100%;
+
+    margin-top: 18px;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 12px 8px;
+  }
+
+  .hero-feature {
+    gap: 5px;
+  }
+
+  .feature-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .hero-feature h2 {
+    font-size: 0.56rem;
+  }
+
+  /*
+     Buttons remain on the left side but
+     can wrap when necessary.
+  */
+
+  .hero-actions {
+    margin-top: 20px;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+  }
+
+  .hero-primary-button {
+    min-height: 36px;
+
+    padding: 0 0.9rem;
+
+    font-size: 0.62rem;
+  }
+
+  .hero-video-button {
+    font-size: 0.62rem;
+  }
+
+  .play-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  /*
+     Phone remains in the RIGHT column.
+  */
+
+  .hero-visual {
+    min-width: 0;
+    min-height: 300px;
+
+    justify-content: center;
+  }
+
+  .hero-phone-image {
+    width: min(100%, 260px);
+    max-height: 360px;
+
+    object-fit: contain;
+  }
+
+  .visual-glow {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+/* ========================================
+   Reduced Motion
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-background {
+    transition: none;
+
+    transform: none;
+  }
+}
+
+
+============================================================
+FILE: .\frontend\src\pages\Home\components\Hero\Hero.jsx
+============================================================
+
+import { useEffect, useState } from "react";
+
+import phoneImage from "../../../../assets/hero/phone.png";
+import house1 from "../../../../assets/hero/house1.png";
+import house2 from "../../../../assets/hero/house2.png";
+import house3 from "../../../../assets/hero/house3.png";
+import energyIcon from "../../../../assets/icons/energy-icon.png";
+import securityIcon from "../../../../assets/icons/security-icon.png";
+import smartControlIcon from "../../../../assets/icons/smart-control-icon.png";
+import sustainableIcon from "../../../../assets/icons/sustainable-icon.png";
+
+import "./Hero.css";
+
+const heroBackgrounds = [house1];
+
+function Hero() {
+  const [currentBackground, setCurrentBackground] = useState(0);
+
+  useEffect(() => {
+    const slideshowInterval = setInterval(() => {
+      setCurrentBackground((previousBackground) => {
+        return (previousBackground + 1) % heroBackgrounds.length;
+      });
+    }, 6000);
+
+    return () => clearInterval(slideshowInterval);
+  }, []);
+
+  return (
+    <section className="hero-section">
+      {/* ========================================
+          Background Slideshow
+          ======================================== */}
+
+      <div className="hero-backgrounds" aria-hidden="true">
+        {heroBackgrounds.map((background, index) => (
+          <div
+            key={background}
+            className={`hero-background ${
+              index === currentBackground ? "hero-background-active" : ""
+            }`}
+            style={{
+              backgroundImage: `url(${background})`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Purple/dark overlay keeps text readable */}
+      <div className="hero-background-overlay" aria-hidden="true" />
+
+      {/* ========================================
+          Hero Content
+          ======================================== */}
+
+      <div className="hero-container">
+        <div className="hero-content">
+          <p className="hero-eyebrow">Welcome to MoticH</p>
+
+          <h1 className="hero-title">
+            Smarter Homes
+            <br />
+            for a <span className="hero-title-accent">Brighter</span>
+            <br />
+            Tomorrow
+          </h1>
+
+          <p className="hero-description">
+            Bring energy, security, automation, and intelligent control together
+            in one connected smart-home experience.
+          </p>
+
+          <div className="hero-features">
+            <div className="hero-feature">
+              <img
+                className="feature-icon"
+                src={energyIcon}
+                alt=""
+                aria-hidden="true"
+              />
+
+              <h2>
+                Energy
+                <br />
+                Management
+              </h2>
+            </div>
+
+            <div className="hero-feature">
+              <img
+                className="feature-icon"
+                src={securityIcon}
+                alt=""
+                aria-hidden="true"
+              />
+
+              <h2>
+                Security
+                <br />
+                &amp; Safety
+              </h2>
+            </div>
+
+            <div className="hero-feature">
+              <img
+                className="feature-icon"
+                src={smartControlIcon}
+                alt=""
+                aria-hidden="true"
+              />
+
+              <h2>
+                Smart
+                <br />
+                Control
+              </h2>
+            </div>
+
+            <div className="hero-feature">
+              <img
+                className="feature-icon"
+                src={sustainableIcon}
+                alt=""
+                aria-hidden="true"
+              />
+
+              <h2>
+                Sustainable
+                <br />
+                Living
+              </h2>
+            </div>
+          </div>
+
+          <div className="hero-actions">
+            <a className="hero-primary-button" href="/solutions">
+              Explore Our System
+              <span aria-hidden="true">→</span>
+            </a>
+
+            <button className="hero-video-button" type="button">
+              <span className="play-icon" aria-hidden="true">
+                ▶
+              </span>
+              Watch Video
+            </button>
+          </div>
+        </div>
+
+        {/* ========================================
+            Phone / Smart-Home Visual
+            ======================================== */}
+
+        <div className="hero-visual">
+          <div className="visual-glow" aria-hidden="true" />
+
+          <img
+            className="hero-phone-image"
+            src={phoneImage}
+            alt="MoticH smart-home management interface"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Hero;
+
+
+============================================================
+FILE: .\frontend\src\pages\Home\components\HomeCTA\HomeCTA.css
+============================================================
+
+/* ========================================
+   Home CTA Section
+   ======================================== */
+
+.home-cta-section {
+  position: relative;
+
+  padding: 5px 0 65px;
+
+  overflow: hidden;
+
+  background: var(--color-background);
+}
+
+/* ========================================
+   Container
+   ======================================== */
+
+.home-cta-container {
+  position: relative;
+
+  width: min(calc(100% - var(--page-padding)), 1100px);
+
+  margin: 0 auto;
+
+  padding: 1px;
+
+  overflow: hidden;
+
+  border-radius: 22px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(196, 181, 253, 0.32),
+    rgba(124, 58, 237, 0.12) 35%,
+    rgba(59, 130, 246, 0.1) 70%,
+    rgba(124, 58, 237, 0.28)
+  );
+
+  box-shadow:
+    0 24px 55px rgba(0, 0, 0, 0.3),
+    0 0 35px rgba(124, 58, 237, 0.06);
+}
+
+/* ========================================
+   Inner Background
+   ======================================== */
+
+.home-cta-container::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 1px;
+
+  border-radius: 21px;
+
+  background:
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(124, 58, 237, 0.16) 0%,
+      rgba(76, 29, 149, 0.07) 35%,
+      transparent 62%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(30, 12, 50, 0.82) 0%,
+      rgba(18, 5, 31, 0.88) 55%,
+      rgba(8, 8, 24, 0.92) 100%
+    );
+
+  pointer-events: none;
+}
+
+/* ========================================
+   Soft Center Glow
+   ======================================== */
+
+.home-cta-container::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: -90px;
+
+  width: 480px;
+  height: 220px;
+
+  transform: translateX(-50%);
+
+  background: radial-gradient(
+    ellipse at center,
+    rgba(196, 181, 253, 0.14) 0%,
+    rgba(124, 58, 237, 0.12) 30%,
+    rgba(76, 29, 149, 0.06) 55%,
+    transparent 75%
+  );
+
+  filter: blur(35px);
+
+  pointer-events: none;
+}
+
+/* ========================================
+   CTA Content
+   ======================================== */
+
+.home-cta-content {
+  position: relative;
+  z-index: 2;
+
+  max-width: 650px;
+
+  margin: 0 auto;
+
+  padding: 42px 30px;
+
+  text-align: center;
+}
+
+/* ========================================
+   Eyebrow
+   ======================================== */
+
+.home-cta-eyebrow {
+  margin: 0 0 7px;
+
+  color: var(--color-accent);
+
+  font-size: 0.58rem;
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  text-shadow: 0 0 10px rgba(124, 58, 237, 0.4);
+}
+
+/* ========================================
+   Title
+   ======================================== */
+
+.home-cta-title {
+  margin: 0;
+
+  color: var(--color-text-primary);
+
+  font-size: clamp(1.7rem, 2.7vw, 2.5rem);
+  font-weight: 700;
+
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.home-cta-title span {
+  background: var(--gradient-glow);
+
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  color: transparent;
+
+  filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.22));
+}
+
+/* ========================================
+   Description
+   ======================================== */
+
+.home-cta-description {
+  max-width: 510px;
+
+  margin: 12px auto 0;
+
+  color: var(--color-text-secondary);
+
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+/* ========================================
+   Actions
+   ======================================== */
+
+.home-cta-actions {
+  margin-top: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 14px;
+}
+
+/* ========================================
+   Primary Button
+   ======================================== */
+
+.home-cta-primary {
+  min-height: 38px;
+
+  padding: 0 18px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  color: #ffffff;
+
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 55%, #4f46e5 100%);
+
+  border: 1px solid rgba(196, 181, 253, 0.28);
+  border-radius: 9px;
+
+  box-shadow:
+    0 8px 22px rgba(76, 29, 149, 0.28),
+    0 0 18px rgba(124, 58, 237, 0.12);
+
+  font-size: 0.66rem;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.home-cta-primary:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(196, 181, 253, 0.5);
+
+  box-shadow:
+    0 12px 28px rgba(76, 29, 149, 0.38),
+    0 0 24px rgba(124, 58, 237, 0.18);
+}
+
+/* ========================================
+   Secondary Link
+   ======================================== */
+
+.home-cta-secondary {
+  min-height: 38px;
+
+  padding: 0 12px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #c4b5fd;
+
+  font-size: 0.66rem;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    text-shadow 0.2s ease;
+}
+
+.home-cta-secondary:hover {
+  color: #ffffff;
+
+  text-shadow: 0 0 10px rgba(167, 139, 250, 0.55);
+}
+
+/* ========================================
+   Large Desktop / TV / Ultrawide
+   ======================================== */
+
+@media (min-width: 1800px) {
+  .home-cta-container {
+    width: min(calc(100% - var(--page-padding)), 1350px);
+  }
+
+  .home-cta-content {
+    max-width: 760px;
+
+    padding: 52px 35px;
+  }
+
+  .home-cta-title {
+    font-size: clamp(2rem, 2.2vw, 2.8rem);
+  }
+
+  .home-cta-description {
+    max-width: 580px;
+
+    font-size: 0.82rem;
+  }
+}
+
+/* ========================================
+   Very Large / 2K / 4K Displays
+   ======================================== */
+
+@media (min-width: 2400px) {
+  .home-cta-container {
+    width: min(calc(100% - var(--page-padding)), 1550px);
+  }
+
+  .home-cta-content {
+    max-width: 850px;
+
+    padding: 60px 40px;
+  }
+
+  .home-cta-title {
+    font-size: clamp(2.2rem, 2vw, 3.1rem);
+  }
+
+  .home-cta-description {
+    max-width: 650px;
+
+    font-size: 0.9rem;
+  }
+
+  .home-cta-primary,
+  .home-cta-secondary {
+    font-size: 0.72rem;
+  }
+}
+
+/* ========================================
+   Small Tablet
+   <= 850px
+   ======================================== */
+
+@media (max-width: 850px) {
+  .home-cta-section {
+    padding: 50px 0 55px;
+  }
+
+  .home-cta-content {
+    padding: 38px 25px;
+  }
+}
+
+/* ========================================
+   Mobile
+   <= 600px
+   ======================================== */
+
+@media (max-width: 600px) {
+  .home-cta-section {
+    padding: 42px 0 48px;
+  }
+
+  .home-cta-container {
+    border-radius: 17px;
+  }
+
+  .home-cta-container::before {
+    border-radius: 16px;
+  }
+
+  .home-cta-content {
+    padding: 34px 20px;
+  }
+
+  .home-cta-title {
+    font-size: clamp(1.55rem, 8vw, 2rem);
+  }
+
+  .home-cta-description {
+    font-size: 0.73rem;
+  }
+
+  .home-cta-actions {
+    margin-top: 19px;
+
+    flex-direction: column;
+
+    gap: 8px;
+  }
+
+  .home-cta-primary {
+    width: 100%;
+    max-width: 220px;
+  }
+}
+
+/* ========================================
+   Reduced Motion
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .home-cta-primary,
+  .home-cta-secondary {
+    transition: none;
+  }
+
+  .home-cta-primary:hover {
+    transform: none;
+  }
+}
+
+
+============================================================
+FILE: .\frontend\src\pages\Home\components\HomeCTA\HomeCTA.jsx
+============================================================
+
+import { Link } from "react-router-dom";
+
+import "./HomeCTA.css";
+
+function HomeCTA() {
+  return (
+    <section className="home-cta-section">
+      <div className="home-cta-container">
+        <div className="home-cta-content">
+          <p className="home-cta-eyebrow">Ready to Get Started?</p>
+
+          <h2 className="home-cta-title">
+            Make Your Property <span>Smarter.</span>
+          </h2>
+
+          <p className="home-cta-description">
+            Discover how MoticH can bring your connected systems into one
+            intelligent platform.
+          </p>
+
+          <div className="home-cta-actions">
+            <Link className="home-cta-primary" to="/contact">
+              Get Started
+              <span aria-hidden="true">→</span>
+            </Link>
+
+            <Link className="home-cta-secondary" to="/contact">
+              Contact Us
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default HomeCTA;
+
+
+============================================================
+FILE: .\frontend\src\pages\Home\components\PlatformPreview\PlatformPreview.css
+============================================================
+
+/* ========================================
+   Platform Preview Section
+   ======================================== */
+
+.platform-preview-section {
+  position: relative;
+
+  padding: 15px 0 45px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 58%,
+      rgba(124, 58, 237, 0.12) 0%,
+      rgba(76, 29, 149, 0.06) 38%,
+      transparent 68%
+    ),
+    var(--color-background);
+}
+
+/* ========================================
+   Container
+   ======================================== */
+
+.platform-preview-container {
+  position: relative;
+  z-index: 2;
+
+  width: min(calc(100% - var(--page-padding)), var(--page-max-width));
+
+  margin: 0 auto;
+}
+
+/* ========================================
+   Heading
+   ======================================== */
+
+.platform-preview-heading {
+  max-width: 620px;
+
+  margin: 0 auto 30px;
+
+  text-align: center;
+}
+
+.platform-preview-eyebrow {
+  margin: 0 0 7px;
+
+  color: var(--color-accent);
+
+  font-size: 0.58rem;
+  font-weight: 700;
+
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  text-shadow: 0 0 10px rgba(124, 58, 237, 0.4);
+}
+
+.platform-preview-title {
+  margin: 0;
+
+  color: var(--color-text-primary);
+
+  font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+  font-weight: 700;
+
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.platform-preview-title span {
+  background: var(--gradient-glow);
+
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  color: transparent;
+
+  filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.22));
+}
+
+.platform-preview-description {
+  max-width: 520px;
+
+  margin: 10px auto 0;
+
+  color: var(--color-text-secondary);
+
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+/* ========================================
+   Dashboard Visual
+   ======================================== */
+
+.platform-preview-visual {
+  position: relative;
+
+  width: min(100%, 1120px);
+
+  margin: 0 auto;
+
+  padding: 1px;
+
+  border-radius: 18px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(196, 181, 253, 0.42),
+    rgba(124, 58, 237, 0.16) 35%,
+    rgba(59, 130, 246, 0.14) 70%,
+    rgba(124, 58, 237, 0.34)
+  );
+
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.42),
+    0 0 40px rgba(124, 58, 237, 0.08);
+}
+
+/* ========================================
+   Glow Behind Dashboard
+   ======================================== */
+
+.platform-preview-visual::before {
+  content: "";
+
+  position: absolute;
+  z-index: -1;
+
+  left: 50%;
+  bottom: -20px;
+
+  width: 80%;
+  height: 45%;
+
+  transform: translateX(-50%);
+
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(167, 139, 250, 0.15) 20%,
+    rgba(124, 58, 237, 0.14) 42%,
+    rgba(76, 29, 149, 0.07) 65%,
+    transparent 82%
+  );
+
+  filter: blur(45px);
+
+  pointer-events: none;
+}
+
+/* ========================================
+   Dashboard Image
+   ======================================== */
+
+.platform-preview-image {
+  position: relative;
+  z-index: 2;
+
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  border-radius: 17px;
+
+  object-fit: contain;
+
+  user-select: none;
+}
+
+/* ========================================
+   Subtle Screen Reflection
+   ======================================== */
+
+.platform-preview-visual::after {
+  content: "";
+
+  position: absolute;
+  z-index: 3;
+
+  inset: 1px;
+
+  border-radius: 17px;
+
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.045) 0%,
+    transparent 18%,
+    transparent 72%,
+    rgba(139, 92, 246, 0.025) 100%
+  );
+
+  pointer-events: none;
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+
+.platform-preview-footer {
+  width: min(100%, 1120px);
+
+  margin: 18px auto 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+/* ========================================
+   Device / Platform Labels
+   ======================================== */
+
+.platform-preview-devices {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  color: var(--color-text-secondary);
+
+  font-size: 0.62rem;
+  font-weight: 500;
+}
+
+.platform-preview-devices span:nth-child(2),
+.platform-preview-devices span:nth-child(4) {
+  color: rgba(167, 139, 250, 0.5);
+
+  font-size: 0.48rem;
+}
+
+/* ========================================
+   Demo Link
+   ======================================== */
+
+.platform-preview-link {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: #c4b5fd;
+
+  font-size: 0.64rem;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease,
+    text-shadow 0.2s ease;
+}
+
+.platform-preview-link:hover {
+  color: #ffffff;
+
+  transform: translateX(3px);
+
+  text-shadow: 0 0 10px rgba(167, 139, 250, 0.55);
+}
+
+/* ========================================
+   Large Desktop / TV / Ultrawide
+   ======================================== */
+
+@media (min-width: 1800px) {
+  .platform-preview-heading {
+    max-width: 720px;
+  }
+
+  .platform-preview-visual,
+  .platform-preview-footer {
+    width: min(100%, 1400px);
+  }
+
+  .platform-preview-title {
+    font-size: clamp(2rem, 2.2vw, 2.8rem);
+  }
+
+  .platform-preview-description {
+    max-width: 600px;
+
+    font-size: 0.82rem;
+  }
+}
+
+/* ========================================
+   Very Large / 2K / 4K Displays
+   ======================================== */
+
+@media (min-width: 2400px) {
+  .platform-preview-heading {
+    max-width: 820px;
+  }
+
+  .platform-preview-visual,
+  .platform-preview-footer {
+    width: min(100%, 1700px);
+  }
+
+  .platform-preview-title {
+    font-size: clamp(2.2rem, 2vw, 3.1rem);
+  }
+
+  .platform-preview-description {
+    max-width: 680px;
+
+    font-size: 0.9rem;
+  }
+
+  .platform-preview-devices,
+  .platform-preview-link {
+    font-size: 0.72rem;
+  }
+}
+
+/* ========================================
+   Small Tablet
+   <= 850px
+   ======================================== */
+
+@media (max-width: 850px) {
+  .platform-preview-section {
+    padding: 50px 0 55px;
+  }
+
+  .platform-preview-heading {
+    margin-bottom: 26px;
+  }
+
+  .platform-preview-visual {
+    border-radius: 15px;
+  }
+
+  .platform-preview-image,
+  .platform-preview-visual::after {
+    border-radius: 14px;
+  }
+}
+
+/* ========================================
+   Mobile
+   <= 600px
+   ======================================== */
+
+@media (max-width: 600px) {
+  .platform-preview-section {
+    padding: 45px 0 50px;
+  }
+
+  .platform-preview-heading {
+    margin-bottom: 22px;
+  }
+
+  .platform-preview-title {
+    font-size: clamp(1.55rem, 8vw, 2rem);
+  }
+
+  .platform-preview-description {
+    font-size: 0.73rem;
+  }
+
+  .platform-preview-visual {
+    border-radius: 12px;
+
+    box-shadow:
+      0 18px 45px rgba(0, 0, 0, 0.36),
+      0 0 25px rgba(124, 58, 237, 0.07);
+  }
+
+  .platform-preview-image,
+  .platform-preview-visual::after {
+    border-radius: 11px;
+  }
+
+  .platform-preview-footer {
+    margin-top: 15px;
+
+    flex-direction: column;
+
+    gap: 10px;
+  }
+
+  .platform-preview-devices {
+    justify-content: center;
+  }
+}
+
+/* ========================================
+   Reduced Motion
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .platform-preview-link {
+    transition: none;
+  }
+
+  .platform-preview-link:hover {
+    transform: none;
+  }
+}
+
+
+============================================================
+FILE: .\frontend\src\pages\Home\components\PlatformPreview\PlatformPreview.jsx
+============================================================
+
+import { Link } from "react-router-dom";
+
+import platformPreview from "../../../../assets/platform/platform-preview.png";
+
+import "./PlatformPreview.css";
+
+function PlatformPreview() {
+  return (
+    <section className="platform-preview-section">
+      <div className="platform-preview-container">
+        <div className="platform-preview-heading">
+          <p className="platform-preview-eyebrow">The MoticH Platform</p>
+
+          <h2 className="platform-preview-title">
+            Your Property. <span>At Your Fingertips.</span>
+          </h2>
+
+          <p className="platform-preview-description">
+            Monitor and manage your connected property through one centralized
+            experience.
+          </p>
+        </div>
+
+        <div className="platform-preview-visual">
+          <img
+            className="platform-preview-image"
+            src={platformPreview}
+            alt="MoticH property management platform dashboard"
+          />
+        </div>
+
+        <div className="platform-preview-footer">
+          <div className="platform-preview-devices">
+            <span>Desktop</span>
+            <span aria-hidden="true">•</span>
+            <span>Mobile</span>
+            <span aria-hidden="true">•</span>
+            <span>Connected</span>
+          </div>
+
+          <Link className="platform-preview-link" to="/demo">
+            Explore the Demo
+            <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default PlatformPreview;
+
+
+============================================================
+FILE: .\frontend\src\pages\Home\Home.css
+============================================================
+
+
+
+============================================================
+FILE: .\frontend\src\pages\Home\Home.jsx
+============================================================
+
+import Hero from "./components/Hero/Hero";
+import Ecosystem from "./components/Ecosystem/Ecosystem";
+import PlatformPreview from "./components/PlatformPreview/PlatformPreview";
+import HomeCTA from "./components/HomeCTA/HomeCTA";
+
+import "./Home.css";
+
+function Home() {
+  return (
+    <>
+      <Hero />
+      <Ecosystem />
+      <PlatformPreview />
+      <HomeCTA />
+    </>
+  );
+}
+
+export default Home;
+
+
+============================================================
+FILE: .\frontend\src\styles\responsive.css
+============================================================
+
+/* =========================================================
+   MoticH Global Responsive System
+   =========================================================
+
+   Standard breakpoints used across the website:
+
+   Large Desktop:  > 1440px
+   Desktop:        1101px - 1440px
+   Tablet:         851px - 1100px
+   Small Tablet:   601px - 850px
+   Mobile:         <= 600px
+
+   IMPORTANT:
+   This file contains GLOBAL responsive behavior.
+
+   Component-specific responsive behavior should remain
+   inside that component's CSS file.
+   ========================================================= */
+
+/* =========================================================
+   Global Layout Variables
+   ========================================================= */
+
+:root {
+  /* Maximum content width */
+  --page-max-width: 1440px;
+
+  /* Horizontal page spacing */
+  --page-padding: 48px;
+
+  /* Vertical section spacing */
+  --section-padding: 100px;
+
+  /* Common layout gaps */
+  --content-gap: 60px;
+
+  /* Header height */
+  --header-height: 70px;
+}
+
+/* =========================================================
+   Large Desktop / TV / Ultrawide
+   >= 1800px
+   ========================================================= */
+
+@media (min-width: 1800px) {
+  :root {
+    --page-max-width: 1720px;
+
+    --page-padding: 64px;
+
+    --section-padding: 120px;
+
+    --content-gap: 80px;
+  }
+}
+
+/* =========================================================
+   Very Large / 2K / 4K Displays
+   >= 2400px
+   ========================================================= */
+
+@media (min-width: 2400px) {
+  :root {
+    --page-max-width: 2100px;
+
+    --page-padding: 80px;
+
+    --section-padding: 140px;
+
+    --content-gap: 100px;
+  }
+}
+
+/* =========================================================
+   Standard Page Container
+
+   Usage:
+   <div className="page-container">
+   ========================================================= */
+
+.page-container {
+  width: min(calc(100% - var(--page-padding)), var(--page-max-width));
+
+  margin-inline: auto;
+}
+
+/* =========================================================
+   Standard Section
+
+   Usage:
+   <section className="page-section">
+   ========================================================= */
+
+.page-section {
+  padding-block: var(--section-padding);
+}
+
+/* =========================================================
+   Responsive Image
+
+   Usage:
+   <img className="responsive-image" ... />
+   ========================================================= */
+
+.responsive-image {
+  display: block;
+
+  max-width: 100%;
+  height: auto;
+}
+
+/* =========================================================
+   Standard Two-Column Layout
+
+   Automatically becomes one column on smaller screens.
+
+   Usage:
+   <div className="responsive-two-column">
+   ========================================================= */
+
+.responsive-two-column {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1fr);
+
+  gap: var(--content-gap);
+
+  align-items: center;
+}
+
+/* =========================================================
+   Tablet
+   <= 1100px
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  :root {
+    --page-padding: 32px;
+
+    --section-padding: 80px;
+
+    --content-gap: 35px;
+  }
+}
+
+/* =========================================================
+   Small Tablet
+   <= 850px
+   ========================================================= */
+
+@media (max-width: 850px) {
+  :root {
+    --page-padding: 28px;
+
+    --section-padding: 70px;
+
+    --content-gap: 28px;
+  }
+
+  .responsive-two-column {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   Mobile
+   <= 600px
+   ========================================================= */
+
+@media (max-width: 600px) {
+  :root {
+    --page-padding: 16px;
+
+    --section-padding: 60px;
+
+    --content-gap: 24px;
+  }
+}
+
+
+============================================================
+FILE: .\frontend\src\styles\theme.css
+============================================================
+
+:root {
+  /* ========================================
+     MoticH Brand Palette
+     ======================================== */
+
+  --color-purple-deep: #12051f;
+  --color-purple-dark: #1b0b2e;
+  --color-purple: #4c1d95;
+  --color-violet: #7c3aed;
+
+  --color-navy: #060912;
+  --color-blue-dark: #0b1739;
+  --color-blue: #1e3a8a;
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* ========================================
+     Default MoticH Theme
+     ======================================== */
+
+  --color-background: var(--color-navy);
+  --color-background-secondary: var(--color-purple-deep);
+
+  --color-surface: var(--color-purple-dark);
+  --color-surface-elevated: #25103d;
+
+  --color-text-primary: #f8f7fc;
+  --color-text-secondary: #b8afc9;
+  --color-text-muted: #7f758f;
+
+  --color-primary: var(--color-purple);
+  --color-secondary: var(--color-blue-dark);
+  --color-accent: var(--color-violet);
+
+  --color-on-primary: var(--color-white);
+
+  --color-border: rgba(124, 58, 237, 0.24);
+  --color-border-bright: rgba(124, 58, 237, 0.5);
+
+  /* ========================================
+     Glow Effects
+     ======================================== */
+
+  --glow-primary:
+    0 0 12px rgba(124, 58, 237, 0.42), 0 0 30px rgba(76, 29, 149, 0.32);
+
+  --glow-secondary:
+    0 0 12px rgba(30, 58, 138, 0.35), 0 0 30px rgba(30, 58, 138, 0.18);
+
+  --glow-strong:
+    0 0 18px rgba(124, 58, 237, 0.55), 0 0 42px rgba(76, 29, 149, 0.4),
+    0 0 60px rgba(30, 58, 138, 0.15);
+
+  /* ========================================
+     Shadows
+     ======================================== */
+
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+  --shadow-card: 0 18px 50px rgba(0, 0, 0, 0.4);
+
+  /* ========================================
+     Gradients
+     ======================================== */
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-purple),
+    var(--color-violet)
+  );
+
+  --gradient-glow: linear-gradient(
+    135deg,
+    var(--color-violet),
+    var(--color-purple),
+    var(--color-blue)
+  );
+}
+
+

@@ -11,6 +11,11 @@ frontend/.env.*
 backend/.env
 backend/.env.*
 
+# Keep environment templates in Git
+!.env.example
+!frontend/.env.example
+!backend/.env.example
+
 # Build output
 frontend/dist/
 
@@ -24,3 +29,4 @@ npm-debug.log*
 # Operating system files
 .DS_Store
 Thumbs.db
+

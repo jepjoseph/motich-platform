@@ -1,0 +1,243 @@
+/* =========================================================
+   Contact Form Panel
+   ========================================================= */
+
+.contact-form-panel {
+  min-width: 0;
+
+  padding: 30px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(124, 58, 237, 0.07),
+    rgba(255, 255, 255, 0.018)
+  );
+
+  border: 1px solid rgba(167, 139, 250, 0.14);
+  border-radius: 20px;
+}
+
+/* =========================================================
+   Heading
+   ========================================================= */
+
+.contact-form-heading {
+  margin-bottom: 26px;
+}
+
+.contact-form-eyebrow {
+  margin: 0 0 10px;
+
+  color: #a78bfa;
+
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.contact-form-heading h2 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(1.7rem, 2.5vw, 2.2rem);
+  line-height: 1.15;
+}
+
+.contact-form-heading > p:last-child {
+  max-width: 520px;
+  margin: 14px 0 0;
+
+  color: rgba(225, 221, 235, 0.68);
+
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+/* =========================================================
+   Form
+   ========================================================= */
+
+.contact-form {
+  display: grid;
+  gap: 20px;
+}
+
+.contact-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.contact-form-field {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-form-field label {
+  color: rgba(255, 255, 255, 0.86);
+
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.contact-form-field input,
+.contact-form-field select,
+.contact-form-field textarea {
+  width: 100%;
+
+  color: #ffffff;
+
+  font: inherit;
+  font-size: 0.92rem;
+
+  background: rgba(5, 4, 15, 0.72);
+
+  border: 1px solid rgba(167, 139, 250, 0.15);
+  border-radius: 12px;
+
+  outline: none;
+
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+.contact-form-field input,
+.contact-form-field select {
+  height: 48px;
+  padding: 0 14px;
+}
+
+.contact-form-field textarea {
+  min-height: 145px;
+  padding: 13px 14px;
+
+  line-height: 1.6;
+
+  resize: vertical;
+}
+
+.contact-form-field input::placeholder,
+.contact-form-field textarea::placeholder {
+  color: rgba(225, 221, 235, 0.38);
+}
+
+.contact-form-field input:hover,
+.contact-form-field select:hover,
+.contact-form-field textarea:hover {
+  border-color: rgba(167, 139, 250, 0.28);
+}
+
+.contact-form-field input:focus,
+.contact-form-field select:focus,
+.contact-form-field textarea:focus {
+  background: rgba(8, 6, 20, 0.9);
+
+  border-color: rgba(167, 139, 250, 0.65);
+
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.contact-form-field select {
+  cursor: pointer;
+}
+
+.contact-form-field select option {
+  color: #ffffff;
+  background: #0b0817;
+}
+
+/* =========================================================
+   Submit Button
+   ========================================================= */
+
+.contact-form-submit {
+  width: fit-content;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 12px 20px;
+
+  color: #ffffff;
+
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  background: linear-gradient(135deg, #7c3aed, #9333ea);
+
+  border: 1px solid rgba(196, 181, 253, 0.2);
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
+}
+
+.contact-form-submit:hover {
+  transform: translateY(-2px);
+
+  filter: brightness(1.08);
+
+  box-shadow: 0 10px 28px rgba(124, 58, 237, 0.22);
+}
+
+.contact-form-submit:active {
+  transform: translateY(0);
+}
+
+.contact-form-submit:focus-visible {
+  outline: 2px solid #c4b5fd;
+  outline-offset: 3px;
+}
+
+.contact-form-submit-arrow {
+  font-size: 1.05rem;
+
+  transition: transform 180ms ease;
+}
+
+.contact-form-submit:hover .contact-form-submit-arrow {
+  transform: translateX(3px);
+}
+
+/* =========================================================
+   Tablet / Mobile
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .contact-form-panel {
+    padding: 22px 18px;
+
+    border-radius: 16px;
+  }
+
+  .contact-form-heading {
+    margin-bottom: 22px;
+  }
+
+  .contact-form-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .contact-form {
+    gap: 18px;
+  }
+
+  .contact-form-submit {
+    width: 100%;
+  }
+}
